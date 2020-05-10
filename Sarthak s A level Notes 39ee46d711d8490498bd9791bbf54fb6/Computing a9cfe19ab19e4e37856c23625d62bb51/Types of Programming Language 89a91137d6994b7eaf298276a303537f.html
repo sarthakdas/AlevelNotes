@@ -1,0 +1,635 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Types of Programming Language</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="89a91137-d699-4b7e-af29-8276a303537f" class="page sans"><header><h1 class="page-title">Types of Programming Language</h1></header><div class="page-body"><h1 id="a834da32-a952-4c09-bcbe-d385d6f73cc1" class="">Programming Paradigms</h1><p id="d7c63bde-f0c6-4291-b530-170de7240854" class="">It is a style of computer programming. Each programming language supports one of these paradigms, and some support more then one. </p><h2 id="d469ae9b-c507-4a5c-9258-824da6311ade" class="">Procedural</h2><p id="636e274b-d872-43ca-8cf6-8c302861997f" class="">Supported by Python and Pascal. This has a series of instructions that tell the computer what to do with the input in order to solve the problem. <strong>Structured Programming </strong>is a type of procedural which uses sequences, selection, iteration and recursion. </p><h2 id="0d64743e-98ea-434b-8ca2-c2b08bb15393" class="">Object-orientated</h2><p id="fdaea9f0-59e7-4660-8bf5-5fb6b3c6da97" class="">Supported by Java and Python. It was developed to make it possible to abstract details of implementations away from the user, making the code reusable and easier to maintain. It is taking over from procedural programming. </p><h2 id="52c23912-838d-41c8-a058-8143ff830f7f" class="">Declarative</h2><p id="91f8a1b9-f757-4ca2-8213-5f912a294105" class="">Supported by SQL. Statements have to be written to describe the problem to be solved. The language implementation decides the best way to solve it. </p><h2 id="61c86f47-0d09-4e19-80f1-f05814a155ff" class="">Functional</h2><p id="9e3beeb2-af32-4cb6-b310-ff7067299285" class="">Supported by Haskell and Python. Functions are used as the building blocks of the program. Statements are written as a series of functions that accept input data as arguments and return and output. </p><hr id="c77d7c33-b3ee-478d-9bac-f80046e97409"/><h1 id="595efa5e-9193-40a4-8c1a-dd477f66cf0c" class="">Procedural Languages </h1><p id="43fa5697-bc49-4e39-a07e-3bfb71718de0" class="">Procedural languages has built in data types such as <strong>integers</strong>,<strong> reals</strong> and<strong> floats</strong>. It typically has <strong>data structures </strong>such as <strong>arrays </strong>and <strong>records</strong>. </p><p id="d9ff65f0-be30-4e57-83b6-a0424ca94ce3" class="">Programmers can create their own data types such as <strong>queue</strong>, <strong>stack </strong>and <strong>hash table</strong>. This can be implemented in different ways such as using built in list data structure. All the users really need to know is the state and behaviour of the data structure. </p><hr id="45d3343c-c55c-43db-98b6-9c3439d60d34"/><h1 id="f88a5aba-c428-4594-9884-85e9b071153a" class="">Assembly Language </h1><p id="ea5a5fcb-08ee-4490-8107-bf828ec92b59" class="">Machine code was the first language used to enter programs. The next advance in programming was using mnemonics instead if binary codes, this is called assembly code.</p><p id="02d84133-6f32-4ee2-8449-8b19f1b225d7" class="">Each assembly language instruction translates into one machine code instruction. </p><p id="0af37b23-92e3-4659-bac1-565c65a11e9e" class="">Assembly code uses mnemonics to represent the operation codes and addresses, typically 2 to 4 character mnemonics.  The assembler then translates the assembly language into machine code for execution. </p><p id="855d7d07-37a4-4200-bd44-15f1150168d7" class="">Below is the instruction set for the Little Man Computer: </p><h3 id="9cc2d24e-7d8b-4b77-b392-70937fd56e1a" class="">Add - <code>ADD</code></h3><p id="c62715b6-194f-4653-a207-5f6caf877654" class="">Add the contents of the memory address to the accumulator </p><p id="b7cd109a-5b04-4f4c-9abf-4d48d579a602" class=""><em>Numeric Code 1xx</em></p><h3 id="b52d08b0-ee5b-405e-9c44-6f3ed256a011" class="">Subtract - <code>SUB</code></h3><p id="db8f1976-9016-464a-a350-904938bf666a" class="">Subtract the contents of the memory address from the accumulator</p><p id="b0a6169d-6531-47b0-8270-e0fcadec8856" class=""><em>Numeric Code 2xx</em></p><h3 id="70ec2276-ba69-4f53-a9f1-f1c56731b3f4" class="">Store - <code>STA</code></h3><p id="fe15e554-3534-47b9-8264-7d08df53f530" class="">Store the value in the accumulator in the memory address given</p><p id="9391cdd8-340c-4fc0-bbb8-d54c1b884b9c" class=""><em>Numeric Code 3xx</em></p><h3 id="ea2796d9-9f9f-4c75-a721-935408024468" class="">Load - <code>LDA</code></h3><p id="4b3a1d21-313b-4cad-85e4-aff4898de20a" class="">Load the accumulator with the contends of the memory address given</p><p id="c0894021-80a2-48a9-86ea-f0380061aec3" class=""><em>Numeric Code 5xx</em></p><h3 id="3dccc84c-5aff-4edf-9f9d-b48383d2f635" class="">Branch (unconditional) - <code>BRA</code></h3><p id="3a56d179-f801-476f-be3c-439c6ab63f75" class="">Branch - use the address given as the address of the next instruction </p><p id="8d9eab2a-1c9e-4f27-b40d-7d996c333d5b" class=""><em>Numeric Code 6xx</em></p><h3 id="35b40373-f0c4-44e4-8bfd-86a7054f9495" class="">Branch If Zero (conditional) - <code>BRZ</code></h3><p id="8a72cd93-7827-4d2d-8544-22b8340b634e" class="">Branch to the given address given if the accumulator is zero</p><p id="855d39a1-77c9-42fc-8d2a-f1226c812cd7" class=""><em>Numeric Code 7xx</em></p><h3 id="747c723e-6b83-436e-b825-ef1bbf25710c" class="">Branch If Positive (conditional) - <code>BRP</code></h3><p id="24d7d09c-4c90-4ef6-aed3-ec5316c7187a" class="">Branch to the address given if the accumulator is zero or positive</p><p id="d3b4cd4a-ca11-46c4-a2cc-df894f5d7ec6" class=""><em>Numeric Code 8xx</em></p><h3 id="63ef808e-2a31-4ed1-8219-0d8fc737e905" class="">Input - <code>INP</code></h3><p id="5bff74fa-8d02-489d-8cf7-b934edd0e796" class="">Input into the accumulator </p><p id="0c9b0d1d-7d98-4593-bace-948d7c65798d" class=""><em>Numeric Code 901</em></p><h3 id="a1d3525a-e608-4093-b10d-7587e4375f21" class="">Output - <code>OUT</code></h3><p id="91ec8176-15db-48eb-9841-127c5ecda024" class="">Output contents of accumulator</p><p id="19f9261c-301f-47f3-a225-31e9248af352" class=""><em>Numeric Code 902</em></p><h3 id="bfa3cc06-d4ab-45e9-b12e-3538e75c25f7" class="">Halt - <code>HLT</code></h3><p id="b948ca6c-3175-410e-bacf-8bdca555b4c9" class="">Stops the execution of the program </p><p id="b45496ea-ae3c-4414-94fe-257b796dc0b6" class=""><em>Numeric Code 0 </em></p><h3 id="8f346f1a-26e4-4f78-9594-871f0bcd31f9" class="">Data - <code>DAT</code></h3><p id="feef54b2-effb-4a26-948b-052a1d582e86" class="">Used to indicate a location that contains data</p><p id="5204489e-5a87-4347-9ef6-29ad6445d75c" class=""> <em>Numeric Code (n/a)</em></p><h2 id="148bf780-7605-408e-ad3b-1ad17fabc28c" class="">Branch Instructions</h2><p id="3d562311-0b2b-40c8-8301-92287ad08024" class="">The flow of a program can be altered using a conditional or unconditional branch instruction. </p><p id="09873d70-8a02-426b-9acb-cefa1891ddbb" class="">The conditional branch instructions <code>BRP</code> <em>(Branch if positive) and </em><code><em>BRZ</em></code><em>(Branch if zero) </em>branch to a given label depending on what is held in the accumulator. </p><p id="4f4e3d5b-9cf5-409c-8180-200bd6d88a03" class="">The unconditional branch instruction <code>BRA</code> will branch what ever is held in the accumulator</p><h3 id="141232dc-2d9a-464d-9e47-1bb999c3b8f5" class="">Examples </h3><p id="08c42bb8-a9a1-49f7-b343-f7b02b216739" class="">Input three numbers <code>x</code>,<code>y</code>,<code>z</code>. Calculate and output the value of <code>x + y - z</code>:</p><pre id="8730f0d8-8800-466d-af26-55969e6883ae" class="code"><code>INP       %Input Y into accumulator
+STA Y     %Store Y 
+INP       %Input X into accumulator 
+STA Z     %Store X 
+INP       
+ADD Y 
+SUB Z 
+OUT 
+HLT</code></pre><h2 id="e83510a0-4579-4258-8d72-c5b7b4c6ebe7" class="">Addressing Modes</h2><p id="0d4c314a-1a7c-45da-bf54-8a5e9c968afa" class="">The operation code (opcode) consists of binary digits representing the operation and a 2 digit representing the <strong>addressing mode.</strong> </p><p id="2facd064-67a9-4ea4-a978-67cc76032374" class="">There are four types of addressing mode</p><ul id="ba40e5cd-0aec-4ca7-a57e-395745964311" class="bulleted-list"><li>Immediate Addressing - the operand is the actual value to be operated on</li></ul><ul id="4d1af4d4-5718-4fa0-a6c2-aa76a8cd702b" class="bulleted-list"><li>Direct Addressing - operand holds the memory address of the value to be operated on</li></ul><ul id="b5e8a1f1-8a37-46f6-a2d3-161eee0661e0" class="bulleted-list"><li>Indirect Addressing - the operand is the location which holds the address of the data </li></ul><ul id="2255bc14-4dfe-49bc-8ad4-906f3c85b5e9" class="bulleted-list"><li>Indexed Addressing - the address is obtained by adding the contents of a general register a constant value</li></ul><h3 id="7d841099-0235-4bfe-9304-9147377ad9e9" class="">Examples</h3><p id="41e0e546-e527-40fa-8392-98300118a55b" class=""><code>Accumulator ACC holds 25</code></p><p id="824d0ab3-5709-4e8a-96f4-b74dac3376fc" class=""><code>Index register holds 6</code></p><p id="ac44d9ad-32f8-4e25-87fc-c5c9bb92b59e" class=""><code>Register 0 (R0) contains 0</code></p><figure id="5fa63fd7-72b0-4a25-8404-8d2e8ab7b566"><div class="source"><a href="Types%20of%20Programming%20Language%2089a91137d6994b7eaf298276a303537f/Scanned_Document.pdf">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/965869a6-b862-446a-885b-e8135e8e1233/Scanned_Document.pdf</a></div></figure><pre id="38302e04-546a-495a-9c64-27e1f2ff8a84" class="code"><code>LOAD immediate 4%Will put the value 4 into accumulator
+LOAD direct    4%Will put 8 (contents of location 4)
+LOAD indirect  4%Will put 27 (contents of the address held in location 4)
+LOAD indexed  R0%Will put 15 (contents of location (index register + contents of R0))
+</code></pre><hr id="39aeb6af-9911-4889-981b-05e52f1ed00c"/><h1 id="ef2020b3-70af-45ca-9a8c-1a726fe54346" class="">Object-Oriented Languages </h1><p id="b55ed24d-fad6-4dd7-8b2d-cd418e3e7b8f" class="">This is when we define a class as the description of what the data looks like (the state) and what the data can do (the behaviour). The user of a class sees only the state and behaviour of a data item. Data items are called objects, where an object is an instance of a class. </p><p id="84098219-666c-4935-bf2a-714c22f2e811" class="">In a hospital system, objects might be a patient, ward, doctor, nurse and so on. Each of these objects can be defined as a class with its own set of behaviours. </p><p id="1bcbed1c-0207-4f05-b351-49f3e26fe034" class="">General advantages of coding in Object-Oriented is: </p><ul id="54777dcb-d7bd-4c83-8474-25b861273569" class="bulleted-list"><li>Reusability objects that are coded and tested can be used again in other programs </li></ul><ul id="b1d47445-b692-4156-967b-60bf2797cb39" class="bulleted-list"><li>OOP provides good framework for code libraries which can be changed</li></ul><ul id="54088e80-35bd-48b3-ad0b-0ed91ad300e6" class="bulleted-list"><li>It forces designers to plan extensively, creating fewer weaknesses</li></ul><ul id="1b1d44ed-d63c-4faa-a0de-b63124ff3860" class="bulleted-list"><li>OOP programs are easier to maintain due to its modular structure </li></ul><h2 id="5e6cb50b-c526-4a3c-b75a-28076ecb1d3d" class="">Inheritance</h2><p id="0a16d98e-8fd8-48e4-b261-744312553852" class="">Each object in its class can have sub-classes and sub-sub-classes. Suppose an program used by a estate agent defines a class called <code>Property</code>. <code>Property</code> has attributes including <code>address</code>, <code>owner</code>, <code>type</code>,<code>price</code>. </p><p id="69cca316-aa0a-4dad-ab35-ffe82322a9fe" class="">The class <code>Properties</code> has two sub-classes called <code>Property_For_Rent</code> and <code>Property_For_Sale.</code> The two subclasses have the same attributes as the superclass <code>Property</code> and in addition each has some attributes of its own. </p><h2 id="ff7d1769-5161-4e2e-bd40-9502457818d5" class="">Polymorphism</h2><p id="02acf97f-b4f3-4f89-b339-ecfbee31fdcc" class="">This refers to a programming languages ability to process objects differently depending on their class. </p><p id="e0fd126f-a495-4cd2-b132-fdc46f845356" class="">A class of objects has behaviours or methods, all of which can be inherited by its sub-classes.  Sometimes some sub-classes methods might have to altered slightly from their parents class. </p><p id="9c861ba9-7aa9-42d8-877f-8436ece67a29" class="">Polymorphism is when a subclass can redefine a method defined in its parent or super class. </p><h2 id="82e55e05-9dba-4917-90a9-a6d1b9a4e310" class="">Encaptulation </h2><p id="848f7a68-e4f9-4b85-80d1-b68e969406e0" class="">Certain attributes are defined in the super class. These attributes cannot be accessed directly if they are declared private; they can only be accessed inside the class methods. </p><p id="1fb69588-ca6b-465b-87a7-0207f41f9307" class="">
+</p></div></article></body></html>

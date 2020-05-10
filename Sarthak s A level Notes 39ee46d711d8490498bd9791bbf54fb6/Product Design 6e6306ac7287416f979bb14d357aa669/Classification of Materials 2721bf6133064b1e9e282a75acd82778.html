@@ -1,0 +1,625 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Classification of Materials </title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2721bf61-3306-4b1e-9e28-2a75acd82778" class="page sans"><header><h1 class="page-title">Classification of Materials </h1></header><div class="page-body"><p id="b0313beb-e062-454d-b5dd-dba2a3473a68" class="">Materials of product design are generally split into groups or classifications: </p><ul id="7525cc18-1591-41e0-b6f9-2363d48b4695" class="bulleted-list"><li>Metal</li></ul><ul id="9c9c231b-97e6-4453-aa77-7b46ae94e4ae" class="bulleted-list"><li>Wood</li></ul><ul id="598caa26-2109-4498-a047-e1a259d9af3a" class="bulleted-list"><li>Polymers</li></ul><ul id="fb7a0ed3-0e29-4a4c-b440-b6655ae624f7" class="bulleted-list"><li>Paper and Boards</li></ul><ul id="9ce9bd08-7a32-4be8-bef2-e697f0cdee9d" class="bulleted-list"><li>Composites </li></ul><ul id="ceaad967-66a1-4615-8970-6ea1089b34fa" class="bulleted-list"><li>Smart Materials </li></ul><ul id="8e526c79-0a67-4764-8785-c68125656548" class="bulleted-list"><li>Modern Materials </li></ul><p id="c2015197-2508-4511-bfbb-ffadd2dc8417" class="">Some materials have more then one classifications, for example metals can be classified as ferrous, non ferrous or alloy.</p><hr id="d629fda5-65c1-4755-90b8-f9a917ea9a28"/><h1 id="d8e35126-1c6b-40b0-a412-29321993d27f" class="">Metals </h1><h2 id="91b07df0-74b8-4361-9291-66abbc0a997a" class="">Ferrous </h2><p id="f5c27528-3c14-44f2-a977-7c90047865e8" class="">A metal containing mostly of iron and carbon, they are magnetic and will rust </p><p id="407afb9a-9442-4213-830a-437fa0e015b2" class="block-color-gray">Low carbon steel, Medium carbon steel, Cast Iron</p><h2 id="5a87621b-76a9-4fc7-9bc8-446422f67113" class="">Non-Ferrous </h2><p id="1b129c7f-564f-4ec1-b032-1d164509b4ef" class="">A metal that does not contain iron, they are not magnetic and will not rust </p><p id="b1c31eb7-fd93-4045-8417-1ee6c407d437" class="block-color-gray">Aluminium, Copper, Zinc, Tin </p><h2 id="46a4b624-25d5-4523-978c-27352bafc6d0" class="">Allow </h2><p id="ab9eabac-f7d7-4360-b55a-fd540253cd5b" class="">A metal made out of two or more elements. Alloys can also be sub-classified as ferrous alloys or non-ferrous alloys. </p><p id="7f016fb9-bef3-4e48-bd68-fb655c5459d2" class="block-color-gray">Stainless steel, Die steel, Brass, Pewter </p><hr id="f302ece1-a5fb-4865-be0b-bab175d2b335"/><h1 id="930c713b-c7c7-471d-8d40-92b5f5940eda" class="">Woods</h1><h2 id="2959312e-6399-4b46-a21f-3470287572b9" class="">Hardwood</h2><p id="ba78d0e8-90c1-4acc-8f49-9fdd11a14665" class="">A wood from broad-leafed (deciduous) trees. These are generally slow growing and lose leaves in autumn. </p><p id="a761b28f-073e-4396-869b-6a423ddfcac9" class="block-color-gray">Oak, Ash, Mahogany, Teak</p><h2 id="39bc24ed-5fda-4dc0-ab78-ad4ca341a8e9" class="">Softwood</h2><p id="05f57ddb-ee05-492f-96b9-ce15c6a406df" class="">A wood from a coniferous (cone bearing) tree. These are generally are are fast growing and tend to be evergreens. </p><p id="4fe83805-97c2-4843-a17a-b71b5cadddc3" class="block-color-gray">Pine, Spruce, Douglas fir, Redwood</p><h2 id="d6acc61e-d513-4fe3-934f-a8fe0c438c53" class="">Manufactured Boards</h2><p id="b2036669-289f-4f23-a774-91bbfc2089cc" class="">A man-made wood based composite material. They are available in much larger sized then solid woods. </p><p id="fd8b7e8c-1040-4b00-b839-83d7f919439d" class="block-color-gray">Plywood, Chipboard, MDF</p><hr id="5c64cb13-ebed-44d2-b4b3-49ea60b3252e"/><p id="19c40415-d287-4944-be71-e893ada43990" class="">
+</p><h1 id="75e01d79-ffad-4940-a01b-f8a44438fcab" class="">Polymers</h1><h2 id="731ea05b-590f-4cf9-b2d4-76ebd68e6c99" class="">Thermoplastic</h2><p id="d8245c68-6d76-412d-890d-5f90c6a15560" class="">A material which can be repeatedly reheated and reshaped, allowing for it to be recycled after its initial use. Thermoplastics have long linear chain molecules held by van der Walls forces. </p><p id="c6575280-967c-46ee-9daa-a93c8dbf5f0f" class="block-color-gray">LDPE, ABS, PVC</p><h2 id="0255d58a-8f16-4fe8-b16a-71042abf14e8" class="">Thermosetting</h2><p id="a6518218-fa0b-4859-b8e7-079e10307ca9" class="">A material which when heated undergoes a chemical change whereby the molecules form rigid cross links. Thermosetting polymers cannot be reheated and reshaped. </p><p id="c05fa5cb-7862-418f-932b-4fb41fcf65ad" class="block-color-gray">UF. MF, Epoxy resin</p><h2 id="404c05de-8562-4a84-a2c9-3107dfc25c87" class="">Elastomer</h2><p id="5e30527e-3fec-446b-980e-1dbd68515e4f" class="">A material which at room, temperature can deform under pressure and then upon release of the pressure, will return to its original shaped. They have weak bonds that allow them to stretch easily. </p><p id="20b0ed34-25cc-421d-9558-52a6173b3803" class="block-color-gray">Natural rubber, Ploybutadiene, Silicone</p><hr id="e3830f2f-bddd-49d2-ac76-c6444232562c"/><h1 id="2c725e9b-5828-444c-8584-772e0c5de250" class="">Paper and Board </h1><p id="490cf634-72a7-453f-a9e3-da9bb98e9fc0" class="">Paper and board are compliant materials that can be scored, folded, and cut with basic tools.</p><p id="24f0c630-e292-4949-bdf2-95f98d33b105" class="block-color-gray">Layout paper, Tracing paper, Bleed paper</p><hr id="4c66f176-1053-4b16-9b3b-f7ae0f0c9a4a"/><p id="9bf5a521-9a46-4e4b-8279-ab07ad620a7f" class="">
+</p><h1 id="a1ff8958-decf-4c26-bf90-74491f92e362" class="">Composites</h1><p id="6df9cc71-8b21-4736-90fb-a684f90c010c" class="">A material compromised of two or more different materials, resulting in a material with enhanced properties. </p><p id="8778ee24-96fc-40a9-b776-705ba6be76a8" class="block-color-gray">Carbon fibre, Concrete, Glulam  </p><hr id="45987240-acec-48d6-9a76-b305d64e5157"/><h1 id="a42aa66a-016a-46fa-b516-a936fe364545" class="">Smart materials </h1><p id="23492a95-78ec-4964-912b-04289fbda7db" class="">A material whose physical properties change in response to an input or change in the environment. Such as electricity, pressure or temperature </p><p id="3c3a3d3c-25ed-494a-a25b-ec450327d7a6" class="block-color-gray">SMA, Piezo electric material,  Photo-chromatic pigment </p><hr id="1b61555f-9a82-4233-aa54-7bf336867f11"/><h1 id="407cdcd9-9a6b-4743-aff9-34eacf84f20b" class="">Modern materials</h1><p id="f09357b5-044f-4ef4-9c0a-1348db138215" class="">A material developed through the invention of new or improved processes. </p><p id="56b72189-6bce-4521-94ee-a8af1c7fac18" class="block-color-gray">Kevlar, PMC, Ploymorph</p><p id="d5e7938f-b237-46e8-8579-59321c323cc3" class="">
+</p></div></article></body></html>

@@ -1,0 +1,624 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Product Design</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="6e6306ac-7287-416f-979b-b14d357aa669" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🛠</span></div><h1 class="page-title">Product Design</h1></header><div class="page-body"><hr id="89e1bdf3-6689-42a7-bbe7-fb7b2d3bb603"/><h2 id="7be876d6-5cf9-46f2-908b-322ff2f6db57" class="">Specification</h2><figure id="8f9ecf5a-3902-470f-9177-9f32a5d60d8b"><div class="source"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Specification.pdf">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dceb7969-04c6-4b07-b1a8-e4d4ccbc0819/Specification.pdf</a></div></figure><hr id="611b2fd4-eda9-4f4d-b5dd-a8b51d3d750d"/><h1 id="7ba9a145-89b4-43a7-a033-9cc97c175233" class="">Notes</h1><h1 id="ed4ac01f-9f66-4576-8bad-2ddd7c8d074f" class="">Technical Principles </h1><h2 id="58087543-c6d9-44ac-bc1f-10240cf220f2" class="">Materials and their Applications</h2><figure id="95e66ede-5c4d-44c0-b527-4f4567fe90d6" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Materials%20and%20their%20Applications%2095e66ede5c4d44c0b5274f4567fe90d6.html">Materials and their Applications </a></figure><figure id="2721bf61-3306-4b1e-9e28-2a75acd82778" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Classification%20of%20Materials%202721bf6133064b1e9e282a75acd82778.html">Classification of Materials </a></figure><figure id="b29a6d92-ca15-480f-b605-f3fb89b16b35" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Methods%20for%20Investigating%20and%20Testing%20Materials%20b29a6d92ca15480fb605f3fb89b16b35.html">Methods for Investigating and Testing Materials</a></figure><h2 id="ff6ebcd8-57f3-4da4-91ca-0a132cabed31" class="">Performance Characteristics of Materials</h2><figure id="ac387f0d-b0ac-4602-a609-af8ea153e215" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Paper%20and%20Boards%20ac387f0db0ac4602a609af8ea153e215.html">Paper and Boards</a></figure><figure id="37232182-f414-4e6b-a8d0-d1a7ea8d78ec" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Sheet%20and%20Film%2037232182f4144e6ba8d0d1a7ea8d78ec.html">Sheet and Film</a></figure><figure id="5b655b36-2461-453f-8900-9a3bda1237f6" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Wood%205b655b362461453f89009a3bda1237f6.html">Wood </a></figure><figure id="1fe8c0f8-571b-4b40-a68f-66209c45b912" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Metal%201fe8c0f8571b4b40a68f66209c45b912.html">Metal</a></figure><figure id="357ca835-a6ee-401b-8008-6f4c6eda3b39" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Polymers%20357ca835a6ee401b80086f4c6eda3b39.html">Polymers</a></figure><figure id="6ba26189-bcea-4fb3-b30c-15399c1dff99" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Elastomers%206ba26189bcea4fb3b30c15399c1dff99.html">Elastomers </a></figure><figure id="a9d61f69-f1be-4697-8a79-e6e27f09f807" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Biodegradable%20Polymers%20a9d61f69f1be46978a79e6e27f09f807.html">Biodegradable Polymers</a></figure><figure id="23e8492c-8840-488e-8820-f1b77eccdaa5" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Composites%2023e8492c8840488e8820f1b77eccdaa5.html">Composites</a></figure><figure id="41e9fa56-1b52-46fb-bf80-a24c03af20df" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Smart%20Materials%2041e9fa561b5246fbbf80a24c03af20df.html">Smart Materials </a></figure><figure id="a81c2fa0-a9d4-4c08-b169-aaf9d91ab1fa" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Modern%20Materials%20a81c2fa0a9d44c08b169aaf9d91ab1fa.html">Modern Materials </a></figure><h2 id="faeaf396-daaf-44ae-b9ad-4f9a77ce6cca" class="">Enhancements of Materials </h2><figure id="c6d28c61-12b9-4fb6-9889-e8c6aa41f233" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Polymer%20Enhancements%20c6d28c6112b94fb69889e8c6aa41f233.html">Polymer Enhancements</a></figure><figure id="7d1ce8e2-c050-479c-9b85-388fe895ddbc" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Wood%20Enhancement%207d1ce8e2c050479c9b85388fe895ddbc.html">Wood Enhancement </a></figure><figure id="dea3b50f-3b56-4249-b43d-47c55b2ee025" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Metal%20Enhancements%20dea3b50f3b564249b43d47c55b2ee025.html">Metal Enhancements </a></figure><h2 id="5c24ab20-7e67-4b19-802b-91f3895959c7" class="">Forming, Redistribution and Addition Processes </h2><figure id="0a7dd198-6afc-4c7f-8d8f-82227c05704d" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Paper%20and%20Board%20Forming%20Processes%200a7dd1986afc4c7f8d8f82227c05704d.html">Paper and Board Forming Processes</a></figure><figure id="755c0267-fae4-4ade-a291-83fe62b61502" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Polymer%20Process%20755c0267fae44adea29183fe62b61502.html">Polymer Process </a></figure><figure id="b4d073b9-4f0a-482e-af60-e2e3c7f7a328" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Metal%20Processes%20b4d073b94f0a482eaf60e2e3c7f7a328.html">Metal Processes</a></figure><p id="1d96328a-0c95-44c9-80f9-555d80960dd3" class="">Wood Processes</p><p id="d9b621c7-32a3-496c-806e-c95b34fd1145" class="">The use of adhesives and fixings</p><figure id="70a9efec-385a-48c0-b1f6-ea93037edba2" class="link-to-page"><a href="Product%20Design%206e6306ac7287416f979bb14d357aa669/Jigs%20and%20Fixtures%2070a9efec385a48c0b1f6ea93037edba2.html">Jigs and Fixtures</a></figure><p id="1bbcf057-033c-41ac-8010-794e0bcea018" class="">
+</p><p id="5b336f73-b2e3-40da-9b7b-9ca86709fc3f" class="">
+</p></div></article></body></html>

@@ -1,0 +1,627 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Input, Output and Storage</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="7f483c26-9f49-4ca3-936d-c92bb6957a83" class="page sans"><header><h1 class="page-title">Input, Output and Storage</h1></header><div class="page-body"><h1 id="2ccad3d9-c51f-46e2-b785-71f95a339267" class="">Input Devices </h1><h2 id="dc27fd16-0cd0-4ab3-bcd1-830bb1beab18" class="">Barcodes </h2><p id="dc5a5cf2-66c8-452c-b71f-68646f840996" class="">There are two types of barcodes:</p><ul id="ceef5b4c-66cb-4660-b310-ca84356a5167" class="toggle"><li><details open=""><summary>Linear</summary><p id="d9e381eb-6147-4fc3-b630-7682fbe0a7fa" class=""><strong>Linear </strong>barcodes are often used to mark products in supermarkets </p></details></li></ul><ul id="c3dcff0d-9dc8-4516-8709-6e1124520ecc" class="toggle"><li><details open=""><summary>2D</summary><p id="c0e87d5b-7995-4f61-b19f-d80b40a0f2af" class=""><strong>2D </strong>barcodes are able to hold more information and are used for URLs and ticket less entry </p></details></li></ul><h2 id="514a3c0a-9fed-4bb0-aa3a-008338375285" class="">Barcode Readers </h2><p id="54a0d30f-fd63-4b41-88b6-de35ac3864d0" class="">There are four main types:</p><ul id="8c5c3035-a3b6-4ad6-ac43-51a3c3a4c787" class="toggle"><li><details open=""><summary>Pen-type readers</summary><p id="269afda7-8785-490a-88a4-9137fdf3cbe7" class="">In <strong>pen-type readers </strong>a light source and photo diode are placed next to each other in the tip of a pen. The diode measures the intensity of light reflected back and generates a wave form that is used to measure the widths of the bars and spaces of the barcode</p></details></li></ul><ul id="039fe704-3d0c-46e6-b54b-89edf31fc302" class="toggle"><li><details open=""><summary>Laser scanners </summary><p id="46229b47-e813-4f89-a5bf-f35162ef5cb5" class=""><strong>Laser scanners</strong>, work similar to pen-type just with a laser beam as the light source. They are reliable and economical for low volume applications</p></details></li></ul><ul id="8e96ad0c-5420-4176-bfe7-8977f34a96ee" class="toggle"><li><details open=""><summary>CCD readers </summary><p id="da26848e-2b59-47cb-bc16-d0a7afb329ef" class=""><strong>CDD or CMOS (</strong><em>Complementary Metal Oxide Semiconductor</em><strong>) </strong>sensor is comprimised of millions of tiny light sensors arranged in a grid. </p></details></li></ul><ul id="66a5f274-49f4-468d-9378-d517d45ac8f5" class="toggle"><li><details open=""><summary>Camera based readers </summary><p id="eda5e20a-ff7c-41c7-9457-84675e12a737" class=""><strong>Camera-based imaging scanner</strong> used a camera an image processing techniques to decode a 1D or 2D barcode. It can read a barcode on any surface, on media or on a screen. It can also read it if the barcode is damaged.</p></details></li></ul><h2 id="514158b6-58a4-46cf-b3e4-39b5ff56c104" class="">Digital Cameras </h2><p id="160dbda4-35c9-47bb-aab1-4ff5d2c0fa29" class="">These have millions of light sensors arranged in a grid. binary data from each sensor is recorded onto the cameras memory card so that the image can be reproduced using suitable software at a computer. </p><h2 id="7f5f178e-ff3e-4c58-93ce-edf580303b72" class="">Radio Frequency Identification (RFID)</h2><p id="c504bddb-681e-452d-8660-3277f0ef766d" class="">This is used as both input and output - an input to read the signal, and output to transmit a signal from an active tag. </p><p id="12bab30c-070a-462a-9f64-34111c3947ee" class="">They can be used to track objects over 300 meters away and do not need a line of sight.</p><p id="122bd965-1586-4dda-bb0b-2a336687e90e" class="">An RFID chip consists of a small microchip transponder and an antenna. The micro chip is around 1mm while the antenna is much larger. This can be embedded into small capsules and injected under the skin in animals.</p><p id="a599463c-737a-4bad-9307-4c0e0bbd1599" class=""><strong>Active tags </strong>are physically larger as they include a battery to power the tag so they actively transmit a signal to be picked up. </p><p id="0ccb86a2-8ad9-468f-a78d-6d403a981bbc" class=""><strong>Passive tags </strong>are cheaper to produce as they do not have a battery, they rely on an electromagnetic power to charge the card using the coiled antenna. Once powered it sends its data to the reader nearby. </p><h1 id="25348534-3281-4b88-85a7-3123931b3152" class="">Output Devices </h1><h2 id="80f5aba0-bcc5-460d-b627-04d948f9b8b7" class="">Screens</h2><ul id="2505517f-baa8-4605-88fa-7022573e203f" class="toggle"><li><details open=""><summary>LCD </summary><p id="42b469ab-8ac3-4ad0-a563-93ff2cad0771" class=""><strong>Liquid crystal display </strong>moniters contain groups of red, green and blue dioides to form each pixel. </p><ul id="2e6553fe-f362-4efe-a68e-c1e96ea0087a" class="bulleted-list"><li>They reach their maxium brightness immediately</li></ul><ul id="235829ee-b732-4c48-a935-af2a0a99365d" class="bulleted-list"><li>The image is much shaper </li></ul><ul id="de49f8aa-bb37-4e70-8174-cec28668c560" class="bulleted-list"><li>The LEDs are smaller so the screen can be thinner </li></ul><ul id="766405f1-d3e2-41f3-a3ce-1d55d7b4dd46" class="bulleted-list"><li>They are more reliable </li></ul></details></li></ul><ul id="340f5892-6527-49ad-b20c-f7b9e3a660a1" class="toggle"><li><details open=""><summary>Organic LED (OLED)</summary><p id="586a2ac8-8323-45b4-80e7-7d560061c9ed" class="">The screen works similar to LCD but are made of plastic so they are more flexible. </p><ul id="973df871-497a-44c3-bbb5-85215260b970" class="bulleted-list"><li>They are flexible </li></ul><ul id="d7839f5d-3e8e-47c3-9ece-51c02d7315aa" class="bulleted-list"><li>They are thinner </li></ul><ul id="69905851-61d6-4a46-8b6a-4c1d344a052d" class="bulleted-list"><li>They are consume less power </li></ul><ul id="5b0313a5-51c8-4de1-be49-c95b69407486" class="bulleted-list"><li>Faster refresh rates </li></ul><ul id="b8f2e023-a22a-446d-bb27-fcf98b08d357" class="bulleted-list"><li>They have truer colours </li></ul><ul id="b0180b3e-c16d-40ea-bd7b-aea64effa07c" class="bulleted-list"><li>Does not last as long </li></ul><p id="359c514c-58fc-4e09-a23e-9e4041685f99" class="">
+</p><p id="8b11701e-8ce0-4956-a602-eb233a8ddb6b" class="">
+</p></details></li></ul><h2 id="f8899ec6-77c7-4775-8b42-1cd8b7f6754f" class="">Printers </h2><ul id="61507748-d156-4859-93a9-50d326ab7735" class="toggle"><li><details open=""><summary>Laser</summary><p id="1e1e52b2-858b-4ba5-a1b8-0ec9c045be29" class="">They offer high quality, high speed printing. Its main use is for text heavy documents </p></details></li></ul><ul id="bae223d8-04ea-4f1d-aeea-0aadfc3d74d0" class="toggle"><li><details open=""><summary>Inkjets</summary><p id="cd057a0d-5da4-47f2-8951-9239c564317a" class="">Inkjets work by by spraying minute dots of ink onto paper to create an image</p></details></li></ul><ul id="c83b3155-85f8-457e-9ed4-41aa9466f06f" class="toggle"><li><details open=""><summary>Dot matrix</summary><p id="70326d22-80f3-4427-ad2e-c1d63776ab3d" class="">These are known as <strong>impact printer. </strong>These printers are more robust but produce a worse image</p></details></li></ul><ul id="17e04fb1-7759-4e30-bc42-683527162f41" class="toggle"><li><details open=""><summary>3D printers </summary><p id="4e045263-b186-4186-8b9a-90f72ce9a5da" class="">They use a filament that is melted and placed on a plane that has a x,y,z axis </p><p id="2f90f490-0387-4e64-98dc-2c7946a94341" class="">
+</p></details></li></ul><h1 id="a0fdbd6b-21bd-4ace-8509-23322d6e04a5" class="">Storage Devices</h1><h2 id="f6a93b9e-12bb-4bfc-b722-0cc6ffb2dc65" class="">Hard Disks (HDD)</h2><p id="8d1eb871-23ce-48f5-af7f-633ba321372e" class="">A hard disk uses a magnetic plate that s either polarised (north or south) to represent 1 or 0. The disk is divided into concentric circles, and then divided into sectors. A head is used to read the data on the hard disk. They are relatively slow but are able to store high capacities. </p><h2 id="6abfc288-be1b-42bc-aeef-8f1b42a82c1a" class="">Optical Disks</h2><p id="7ace466e-a4b9-4af0-bab6-a08b2e0fe5ab" class="">There are 3 main formats: read-only, recordable and rewrite-able.</p><p id="a68da785-7383-4607-b051-d0cea2c18a02" class="">An <strong>optical disk</strong> works by using a high powered laser to burn sections of the disk. And a sensor is used to see if a bit reflects light or not. </p><ul id="6cb6e700-adad-449e-808a-a57e7741139c" class="toggle"><li><details open=""><summary>Read-only </summary><p id="7c034410-2582-401e-a0d9-f8cf47ed872c" class="">CD-ROM </p><p id="ea73484c-73ed-4a1b-89b7-7f566f9cbd95" class="">These contain <strong>pits </strong>and <strong>lands</strong>, pits cause light to be scatted</p><p id="ec026c3e-6207-4cdf-b97a-e6ea01dd2be4" class="">There is only one track, so it is arranged as a tight spiral </p></details></li></ul><ul id="ccdc159c-7394-4d0e-9ee3-d0dbedd5adc8" class="toggle"><li><details open=""><summary>Re-write </summary><p id="cbd686b5-e58f-44b5-8c8c-f3257a083e89" class="">DVD-RW </p><p id="6a2c37f4-ba15-4f2c-b53d-61b1087d43b5" class="">These use a laser and a magnet to set the data. The laser heats the surface while the magnet sets it to 1 or a 0. </p></details></li></ul><p id="7335b5de-d355-4c67-9cc4-df7fa37a3c1b" class="">Optical disks are cheap but easily damaged</p><h2 id="695dcf5a-7863-4332-b6a2-f721ec498312" class="">Solid-state Disk (SSD)</h2><p id="85c3a8c9-cd32-4bcb-8d71-687ca91184b8" class="">Solid-state memory consists of millions of <strong>NAND </strong>flash memory cells, and a controller that manages the data. </p><p id="db3a61f1-4786-4db6-a265-0ac5d82ecc25" class="">Each cell works by delivering a current along the bit and word line to activate the flow of electrons from the source to the drain. The current is strong enough to let a few electrons past into a floating gate where they are trapped. No charge is considered 1 and charge is considered 0. </p><p id="a7c98c0a-de71-4e93-b441-2b5be772500d" class="">SSD are smaller and much more portable, but they are more expensive</p><h2 id="f3cc11da-495c-4f14-ba9d-2f7076f1e90d" class="">RAM &amp; ROM </h2><ul id="ae5901b0-3fa5-4427-a257-2c8e41503aee" class="toggle"><li><details open=""><summary>RAM </summary><p id="7e4d4f2d-6e71-4e63-8f7b-00e3a1e8ef8b" class="">It is used to store programs and data that are currently being used. It is volatile, so data is lost when the computer switches off</p></details></li></ul><ul id="3f6a74d0-a597-455f-b317-eeb756252e5d" class="toggle"><li><details open=""><summary>ROM</summary><p id="354f14c3-dd8d-4457-ac4d-365be2763c22" class="">Hold data that needs to be permanently stored. It contains the boot up sequence for the computer and holds the BIOS. </p><p id="7ff11223-81c7-4e69-aaee-5c1fe723d15e" class="">
+</p><p id="40f62ea5-7d7f-4c65-872e-707d8b7ea458" class="">
+</p></details></li></ul></div></article></body></html>

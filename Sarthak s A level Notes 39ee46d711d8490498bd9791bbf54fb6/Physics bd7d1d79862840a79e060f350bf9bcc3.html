@@ -1,0 +1,624 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Physics </title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="bd7d1d79-8628-40a7-9e06-0f350bf9bcc3" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1559744339-9ea435c9b2b4?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🔬</span></div><h1 class="page-title">Physics </h1></header><div class="page-body"><hr id="d8f911c2-a282-4eae-a2da-eeabc71fcb46"/><h3 id="6bea356a-d92d-4b17-94af-9c200b0eaa66" class="">Specification</h3><figure id="5db08bee-7195-4112-a023-5927eb804a9c"><div class="source"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Specification.pdf">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a1d444d9-07b6-4e47-bfcb-0e895079fd76/Specification.pdf</a></div></figure><h3 id="fa85add1-3db4-4648-92d0-82056fe2c2d7" class="">Textbook</h3><figure id="43de21e8-33ea-443b-b3d9-d306c38779c6"><div class="source"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Textbook.pdf">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b95563a3-53db-484e-9e9d-9d1de5c05fa6/Textbook.pdf</a></div></figure><h3 id="00872c9d-3041-4d39-9778-4df3b377251a" class="">Formulae Sheet</h3><figure id="d80621c0-7477-43d7-ab5c-170041f1fbcd"><a href="https://filestore.aqa.org.uk/resources/physics/AQA-7408-SDB.PDF" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title"></div></div><div class="bookmark-href">https://filestore.aqa.org.uk/resources/physics/AQA-7408-SDB.PDF</div></div></a></figure><hr id="6405f20f-c467-4e1d-8daa-e217458f0bf5"/><h1 id="5249c9d4-ce1e-42f6-acf9-fabcca0b8bc6" class="">Notes</h1><h1 id="11f057c1-3ace-4f23-b556-702df656fbc1" class="">Particles and Radiation</h1><h2 id="521bc0a2-1634-4b0c-9e9d-6f5ca1539b59" class="">Particles</h2><figure id="17730526-efd6-41bb-84fd-351529c84bb6" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Constituents%20of%20the%20Atom%2017730526efd641bb84fd351529c84bb6.html">Constituents of the Atom</a></figure><figure id="5fa29d9e-31e8-4479-83aa-9a662cad8a96" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Stable%20and%20Unstable%20Nuclei%205fa29d9e31e8447983aa9a662cad8a96.html">Stable and Unstable Nuclei</a></figure><figure id="b44847bd-7814-4259-87d6-139250bcfd25" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Particles%20Antiparticles%20and%20Photons%20b44847bd7814425987d6139250bcfd25.html">Particles, Antiparticles and Photons</a></figure><figure id="fd8fa4f7-d0b3-4a56-9ae4-37d48c34847c" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Particle%20Interactions%20fd8fa4f7d0b34a569ae437d48c34847c.html">Particle Interactions</a></figure><figure id="b8d1dcd1-4310-4046-8433-3ec03252a45a" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Classification%20of%20Particles%20b8d1dcd14310404684333ec03252a45a.html">Classification of Particles</a></figure><figure id="2ff227b7-2908-4ea1-bdd0-2d41d7d06685" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Quarks%20and%20Antiquarks%202ff227b729084ea1bdd02d41d7d06685.html">Quarks and Antiquarks</a></figure><figure id="6311f633-efe0-4cb1-aa16-f8c04011b97d" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Applications%20of%20Conservation%20Laws%206311f633efe04cb1aa16f8c04011b97d.html">Applications of Conservation  Laws</a></figure><h2 id="4602feea-e8e4-49be-be54-e5dbc81073f7" class="">Electromagnetic Radiation and Quantum Phenomena</h2><figure id="3dd0b60a-c1f7-4323-a2e3-0a99d4b739c4" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/The%20Photoelectric%20Effect%203dd0b60ac1f74323a2e30a99d4b739c4.html">The Photoelectric Effect</a></figure><figure id="735ddc01-31ea-419a-ba16-5e3fad66d5a2" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Collisions%20of%20Electrons%20with%20Atoms%20735ddc0131ea419aba165e3fad66d5a2.html">Collisions of Electrons with Atoms </a></figure><figure id="c5222c2a-731e-4ea1-910f-3a52592a6b7f" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Energy%20Levels%20and%20Photon%20Emission%20c5222c2a731e4ea1910f3a52592a6b7f.html">Energy Levels and Photon Emission</a></figure><figure id="90984c98-f1ce-4b48-b90f-0214ff280b8f" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Wave%20Particle%20Duality%2090984c98f1ce4b48b90f0214ff280b8f.html">Wave Particle Duality</a></figure><hr id="6d0fda47-c3fa-4c76-b3eb-b80033b19e33"/><h1 id="bc88d28b-8527-4b96-bc36-79277399e90b" class="">Waves</h1><h2 id="51b53392-a060-43b0-8ca2-948a5b19a745" class="">Progressive Waves</h2><figure id="49063ac4-9460-4c3a-8c03-2c7cda95aadb" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Progressive%20Waves%2049063ac494604c3a8c032c7cda95aadb.html">Progressive Waves</a></figure><figure id="1f30b9bd-81ac-4d35-b255-051bd1406282" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Longitudinal%20and%20Transverse%20Waves%201f30b9bd81ac4d35b255051bd1406282.html">Longitudinal and Transverse Waves</a></figure><figure id="c83d79c2-15b9-4de1-9f0e-de891376cf54" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Principle%20of%20Superposition%20of%20waves%20and%20formation%20%20c83d79c215b94de19f0ede891376cf54.html">Principle of Superposition of waves and formation of Stationary Waves</a></figure><h2 id="86dfaa21-54d3-4387-a04c-4c9c9f820620" class="">Refraction, Diffraction and Interference</h2><figure id="f56b5857-014b-41c8-9f59-d49bf39ec7d9" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Interference%20f56b5857014b41c89f59d49bf39ec7d9.html">Interference</a></figure><figure id="b0bc5234-17a9-4109-89c9-9c45c6f83c7b" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Diffraction%20b0bc523417a9410989c99c45c6f83c7b.html">Diffraction</a></figure><figure id="1c3e0f7d-0531-4a20-a6ec-2efd95b529f1" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Refraction%20at%20a%20Plane%20Surface%201c3e0f7d05314a20a6ec2efd95b529f1.html">Refraction at a Plane Surface</a></figure><hr id="db0a2f6a-b356-4616-ac44-fe00172268f2"/><h1 id="1d61f304-5cc9-4789-a5af-b7c97dc3def7" class="">Mechanics and Materials</h1><h2 id="6777577b-b503-4698-9ec9-b31e1aae19e5" class="">Force, Energy, and Momentum</h2><figure id="d8e48b23-d59e-4d95-bccc-206d9c114d37" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Scalars%20and%20Vectors%20d8e48b23d59e4d95bccc206d9c114d37.html">Scalars and Vectors</a></figure><figure id="bd9b541e-fca6-4b31-a665-b18dd70aafe3" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Moments%20bd9b541efca64b31a665b18dd70aafe3.html">Moments </a></figure><figure id="1748b980-ca2c-483b-8c15-2f4587e8a104" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Motion%20along%20a%20Straight%20Line%201748b980ca2c483b8c152f4587e8a104.html">Motion along a Straight Line</a></figure><p id="d6649f46-6cee-4a9e-8b2e-526f7b9bb2ba" class="block-color-red">Projectile Motion </p><p id="c9d2aebd-12ea-4276-9735-15800576994b" class="block-color-red">Newton&#x27;s Laws of Motion</p><p id="2875d8d0-ab87-44a9-a02b-7190ec9ab3f0" class="block-color-red">Momentum</p><p id="b482df96-29fd-4d3c-8c21-b7cfa974ca30" class="block-color-red">Work, Energy and Power</p><p id="49ee3e57-f3e5-4a2c-a4a4-0a9e21f07d73" class="block-color-red">Conservation of Energy </p><h2 id="a2850349-1d1b-4244-a5b0-a61902885187" class="">Materials</h2><p id="a19e0dec-4b98-435a-beba-527341588f67" class="block-color-red">Bulk properties of solids</p><p id="367edb52-09ec-4549-bc75-3ddc9a3b59da" class="block-color-red">The Young Mo dulus</p><hr id="b15880e4-b44c-4d23-b7ac-990534aa22ec"/><h1 id="f4f740e8-e555-458a-8a4c-fe27f51bdba4" class="">Electricity</h1><h2 id="1deff092-c1a5-4500-b1aa-008a5f9854c0" class="">Current Electricity</h2><figure id="d84aa36c-a28d-4f6e-a91d-ff5533db63ea" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Basics%20of%20Electricity%20d84aa36ca28d4f6ea91dff5533db63ea.html">Basics of Electricity</a></figure><figure id="17c26796-807c-4ea3-b935-c2f4c902e402" class="block-color-red link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Current%20Voltage%20Characteristics%2017c26796807c4ea3b935c2f4c902e402.html">Current-Voltage Characteristics</a></figure><p id="4c546094-b6a3-48a9-9859-1067704d2fb7" class="block-color-red">Resistivity</p><p id="a07e1f5a-6a0c-4906-a593-75b743ab2367" class="block-color-red">Circuits</p><p id="88456051-faca-4a7e-8f87-1ef384b99b81" class="block-color-red">Potential Divider</p><p id="e3bab63b-0915-4628-89ca-206bf33710f6" class="block-color-red">Electromotive Force and Internal Resistance</p><hr id="22eb6505-1e1a-46ce-8653-03bb17840f28"/><h1 id="66dbb024-9671-4aec-9eda-4fc42a0a9564" class="">Further Mechanics and Thermal Physics</h1><h2 id="d140b6da-3efe-495a-85ad-cb879cbe11c2" class="">Periodic Motion </h2><figure id="d219dcf7-2c3a-42ff-95ae-e302dd84f496" class="block-color-orange link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Circular%20Motion%20d219dcf72c3a42ff95aee302dd84f496.html">Circular Motion </a></figure><figure id="5284d2f5-b6a1-415f-8b62-860838b68ac3" class="block-color-orange link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Simple%20Harmonic%20Motion%205284d2f5b6a1415f8b62860838b68ac3.html">Simple Harmonic Motion </a></figure><figure id="c280aa4a-a3f7-484f-a471-a18b5ec4017b" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Simple%20Harmonic%20Systems%20c280aa4aa3f7484fa471a18b5ec4017b.html">Simple Harmonic Systems </a></figure><figure id="561f49dd-355c-40dc-8a4e-65887c52eb0f" class="block-color-red link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Forced%20Vibrations%20and%20Resonance%20561f49dd355c40dc8a4e65887c52eb0f.html">Forced Vibrations and Resonance  </a></figure><h2 id="88e0ecac-a22e-4e42-8db0-db039b9d6c34" class="">Thermal Physics </h2><figure id="8cb7247b-de4a-4d76-82f3-c30043d9d9e6" class="link-to-page"><a href="Physics%20bd7d1d79862840a79e060f350bf9bcc3/Thermal%20Energy%20Transfer%208cb7247bde4a4d7682f3c30043d9d9e6.html">Thermal Energy Transfer</a></figure><p id="69335290-b6d6-401f-bb11-e8c4935ac9e1" class="block-color-red">Ideal Gases </p><p id="1218af48-a0b0-43dd-b270-f246f55d28e8" class="block-color-red">Molecular Kinetic Theory Model </p><hr id="155af685-75b7-4947-ac77-13cfefc27f4a"/><p id="c1d0f1da-048f-4945-a2f1-eb3e1830066f" class="">
+</p><p id="0da2ee79-9e83-49bb-95ce-d98f8e3b1dd8" class="">
+</p></div></article></body></html>

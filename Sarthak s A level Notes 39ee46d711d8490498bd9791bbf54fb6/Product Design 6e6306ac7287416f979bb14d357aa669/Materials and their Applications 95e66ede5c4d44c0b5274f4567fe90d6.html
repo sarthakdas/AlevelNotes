@@ -1,0 +1,626 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Materials and their Applications </title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="95e66ede-5c4d-44c0-b527-4f4567fe90d6" class="page sans"><header><h1 class="page-title">Materials and their Applications </h1></header><div class="page-body"><p id="cafa5a92-e9ae-43ef-8352-33da1310392c" class="">
+</p><p id="90185dc5-6f60-4770-a753-347f00ca8a34" class="">Different properties work in different ways, causing some materials to work better then others for certain jobs.</p><hr id="12f7ad92-ecd6-429c-af80-3a0019fcaee3"/><h1 id="7df4414a-d170-4e1c-8493-e942ce98c63c" class="">Material Properties</h1><p id="94069fe0-d97a-41fd-8e3c-97c116e370e1" class="">There are two principal categories of material properties: <strong>Mechanical </strong>and <strong>Physical. </strong></p><ul id="a203d007-6be7-4257-a50d-a4b14432e062" class="bulleted-list"><li>Mechanical  properties are associated with how a material reacts to an external force</li></ul><ul id="2060e322-a8f1-45fb-ba7c-4ca43614f09d" class="bulleted-list"><li>Physical properties are associated with the actual make-up or structure of the material</li></ul><h2 id="cabfb6e5-d3cd-43ea-a84d-caad8259906e" class="">Mechanical Properties of Materials </h2><div id="ff5666fb-446e-4142-af74-09d79f602d6e" class="column-list"><div id="3e54ea94-a460-409d-89b3-f603b4d6bc0f" style="width:50%" class="column"><p id="ff9a3011-0af1-410a-a964-77dc94a38927" class=""><strong>Compressive Strength </strong></p><p id="83d59c67-9513-457e-b6c8-2ef6fea62533" class="">
+</p></div><div id="00954eec-d614-44d2-a282-7d7015a61750" style="width:50%" class="column"><p id="70a4bda8-325c-4652-9716-50990f8fb5d5" class="">The ability to withstand being crushed or shortened by pushing forces(compression). </p></div></div><div id="577f33fd-102c-47a6-8368-ee4c3598b3a6" class="column-list"><div id="a9a84981-5ead-4457-8951-cd3889411291" style="width:50%" class="column"><p id="86eed638-0844-4734-9453-fb08a6fcc266" class=""><strong>Tensile Strength </strong></p></div><div id="7f774f5e-37a7-43a6-99ae-43741981bfe6" style="width:50%" class="column"><p id="cd540f5a-5944-4362-b2d4-2575b1075a15" class="">The ability to resist stretching or pulling forces (tension)</p></div></div><div id="4629770b-99a3-445d-bb19-8c1eacd5de02" class="column-list"><div id="7f394a60-a952-4644-8ac8-f3a4cfe55093" style="width:50%" class="column"><p id="08b5625a-171a-4835-bb5d-2d4113882b19" class=""><strong>Bending Strength </strong></p></div><div id="cc31c803-f154-4cfe-bf35-dc3b6db72c6c" style="width:50%" class="column"><p id="57901cd5-7ddf-4f67-aee5-da25628eb464" class="">The ability to resist forces that may bend the material.</p></div></div><div id="62aadbd9-a7eb-468a-bde0-3cd8d7fbb3aa" class="column-list"><div id="6992dace-cd30-4874-b90b-fd7d16233554" style="width:50%" class="column"><p id="8d97c695-419b-4238-ae03-5143036c983d" class=""><strong>Shear Strength </strong></p></div><div id="d5b9da32-740d-469d-ad4b-dabbc2d08b72" style="width:50%" class="column"><p id="e83fd96a-e91f-42cc-9c88-8b2536132941" class="">The ability to resist sliding forces on a parallel plane</p></div></div><div id="5d0b7296-6eb3-4122-88dc-11fbc5d41ae1" class="column-list"><div id="1cca6e31-f918-4225-a136-ae55cb9d5e96" style="width:50%" class="column"><p id="c3f3a879-9a20-4e1c-98f2-6e02942b0bc6" class=""><strong>Torsional Strength </strong></p></div><div id="073a94b9-a9f4-45c6-810e-f1abd21019dd" style="width:50%" class="column"><p id="51cef9c4-0d48-4f46-84cc-de2eac6d646b" class="">The ability to withstand twisting forces from applied torque or torsion</p></div></div><div id="592e35f5-0e60-4911-8672-71029f7bf012" class="column-list"><div id="e6c129a6-0519-4dc5-964b-82772b0b389f" style="width:50%" class="column"><p id="ec15820b-5365-4bb7-a8e6-8d70fb67c599" class=""><strong>Hardness </strong></p></div><div id="18b6bb31-b146-45d3-80a0-e45ee6d383a2" style="width:50%" class="column"><p id="068fb49d-5e72-4b20-bfa5-6b35b1f35279" class="">The ability to resist abrasive wear such as scratching, surface indentation or cutting</p></div></div><div id="d0054835-c8f2-4544-9067-5b204080678f" class="column-list"><div id="4a018445-4e50-4de6-997e-0e2882b23778" style="width:50%" class="column"><p id="9eb867bf-36f4-411d-b593-5532a51108d6" class=""><strong>Plasticity </strong></p></div><div id="bb5dc92a-e1fd-40a8-a280-2055149cbd38" style="width:50%" class="column"><p id="05743660-aab7-49d1-9901-d45ac7485dfc" class="">The ability to be permanently deformed and retain the deformed shape</p></div></div><div id="ddadc4f0-f11b-4cf6-bb21-978b6eba4180" class="column-list"><div id="6f0b76c2-c527-4056-bbad-673e91dbaa7d" style="width:50%" class="column"><p id="ae961c4a-d2f5-41ab-af40-1d3bc9ce5bc4" class=""><strong>Ductility </strong></p></div><div id="cac0f664-34b0-4a0a-9fb5-1e9fb3ad6a1d" style="width:50%" class="column"><p id="14e43568-1347-4398-93e7-6f8827901999" class="">The ability to be drawn out under tension, reducing the cross sectional area without cracking</p></div></div><div id="f7ff284a-de91-4c2d-b8f9-516c8a3edaf0" class="column-list"><div id="978be962-b377-4d58-8b34-62ecedbd9e59" style="width:50%" class="column"><p id="fdd7a1f2-f94f-4fe4-adf4-163685cdab79" class=""><strong>Malleability</strong></p></div><div id="0b1b27bd-96c5-44bb-b90a-871b0cc73386" style="width:50%" class="column"><p id="259e2b20-5373-453a-8d66-8c7095a46c44" class="">The ability to withstand deformation by compression without cracking, malleability increases with temperature</p></div></div><div id="31da9afc-6d2c-42ef-a531-4d6baf4fe2ce" class="column-list"><div id="16acca8d-cd89-4daa-bedc-d4420431be7e" style="width:50%" class="column"><p id="d777b5e0-c42a-44ab-863c-76165e9481ea" class=""><strong>Elasticity </strong></p></div><div id="357977fb-3244-4dc3-b9ff-c4050cc58845" style="width:50%" class="column"><p id="b2a3fd51-2ec7-479a-b82d-a74e8d516b5a" class="">The ability to be deformed and then return back to the original shape when a force is removed</p></div></div><h2 id="ff3a642d-7cff-492e-838f-de0f8cb6527f" class="">Physical Properties</h2><div id="810f3217-a428-411c-aae0-7560098f7398" class="column-list"><div id="ab51a45a-43c2-4168-af6b-da8a9ae06527" style="width:50%" class="column"><p id="ba7094f2-e27c-45cc-baf3-2a5b0731b5a4" class=""><strong>Electrical Conductor/Insulator </strong></p></div><div id="9bdd8b19-6e7d-4527-bb96-391342c31655" style="width:50%" class="column"><p id="57caa137-50b3-4c18-8396-69363de28195" class="">Allows/Does not allow the flow of electrical current through the material. A good conductor give little resistance.</p></div></div><div id="eb51bc7d-1388-40b8-a5a2-d6d54fb6351d" class="column-list"><div id="bfb0edc8-6c7e-4b12-82eb-8c5f435da305" style="width:50%" class="column"><p id="7d61f428-7a7e-49ca-ae51-9a6c0880f49b" class=""><strong>Thermal Conductor/Insulator</strong></p></div><div id="f1e0e035-459a-41b4-9691-dbd36dfc3daf" style="width:50%" class="column"><p id="3bc06ab0-82d4-4fb3-809f-c5b8031dc2a7" class="">Allows/Does not allow the transfer of heat energy through the material. A material with high thermal conductivity allows the transfer of heat to occur quickly across the material.  </p></div></div><div id="4b6271d0-c88c-4319-9ed2-a23c49041caf" class="column-list"><div id="20da12e8-7896-46d0-9fc1-06b3d6ba0660" style="width:50%" class="column"><p id="3f6995f7-c549-4245-acf0-4b87780503bd" class=""><strong>Thermal Expansion</strong></p><p id="242b0043-640e-44f7-b50e-528e6c6e6955" class="">
+</p></div><div id="98d8aa81-b226-4271-b883-f9a0c0cd7a03" style="width:50%" class="column"><p id="ffbd5b20-9eea-468e-ad34-4ffb7f00b4ed" class="">The ability to increase in material volume in response to a heat output</p></div></div><div id="151fb3c9-25d7-4f1d-8a25-3dfb7104a37f" class="column-list"><div id="acdce0d1-6451-4737-8887-c091e76e7d5d" style="width:50%" class="column"><p id="58a98522-4e71-45a2-9329-48cf10045adf" class=""><strong>Density</strong></p></div><div id="552f20c1-0728-44bd-88b7-1ddc09a935e6" style="width:50%" class="column"><p id="5d472254-6406-4455-ac2a-4439c596eed0" class="">The mass of the material in a standard volume of space</p></div></div><div id="25d52889-54af-422d-93e0-7716036ec69a" class="column-list"><div id="5e13f244-ea59-4bbf-8d56-827f29b61ebc" style="width:50%" class="column"><p id="88dc9c84-1e7c-41f4-8006-76e180ca4528" class=""><strong>Fusibility</strong></p></div><div id="956cfb8d-55c6-4ea5-b55c-55ab31332f01" style="width:50%" class="column"><p id="d530b68c-5e94-44dd-82a8-049eaf86a0d2" class="">The ability of the material to be fused or converted from a solid to a liquid or molten state usually by heat. Good fusibility is an essential for a metal being cast</p></div></div><p id="75b32085-8b4d-4888-a30c-f83fb410b859" class="">
+</p></div></article></body></html>

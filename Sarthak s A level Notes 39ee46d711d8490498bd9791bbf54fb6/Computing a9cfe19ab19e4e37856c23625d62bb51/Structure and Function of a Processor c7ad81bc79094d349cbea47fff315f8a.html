@@ -1,0 +1,631 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Structure and Function of a Processor </title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c7ad81bc-7909-4d34-9cbe-a47fff315f8a" class="page sans"><header><h1 class="page-title">Structure and Function of a Processor </h1></header><div class="page-body"><h1 id="1ccb693a-4db0-4191-a3c8-1b903130676b" class="">The Central Processing Unit (CPU)</h1><p id="e1af59a2-9eed-4c9b-8a6d-534eea39e954" class="">This contains various other components that help it carry out its task. These components include:</p><ul id="6094803c-498a-49d1-93d7-42f0a3aca9b8" class="bulleted-list"><li>Control Unit</li></ul><ul id="d573d32a-29b1-4252-948f-1fa0d705a849" class="bulleted-list"><li>Buses</li></ul><ul id="e7a575cf-f1c0-41eb-b69b-0af6134ef9bd" class="bulleted-list"><li>Arithmetic-Logic Unit (ALU)</li></ul><ul id="5e7d7da1-1799-4c4a-8d37-a32cc5d6a970" class="bulleted-list"><li>Dedicated Registers </li></ul><h2 id="6a1ace51-3189-4c64-be1d-0fe20a7a6732" class="">Control Unit </h2><p id="f4efd3c2-2b0f-4ca8-9370-5db9d642f3c8" class="">This component controls and coordinates the activities, directing the flow of data. It decodes instructions and fetches addresses from memory and manages its execution .</p><h2 id="7ee365b2-b02a-4907-a98f-752014d5ce16" class="">Buses </h2><p id="3a10724b-710f-4dcd-8db8-605557d1c712" class="">A <strong>bus</strong> is a set of parallel wires connecting two or more components. The processor is connected by 3 buses. </p><p id="52c735a9-95b2-4b8d-a4a6-474917a13142" class="">When it requires a address it uses the <strong>address bus. </strong>It is then returned to the CPU using the <strong>data bus</strong>. Control signals are sent along the <strong>control bus. </strong>These buses are known as the <strong>system buses</strong>.</p><p id="0a0858eb-ecbb-430a-827f-c066eed8c2a5" class=""><strong>Data</strong> and <strong>control signals</strong> can travel in both directions while <strong>addresses </strong>can only travel in one direction. </p><ul id="4eb91075-2051-464b-85be-9f940f569aad" class="toggle"><li><details open=""><summary>Data Bus</summary><p id="768e9760-d18c-4aac-835e-799c4913930e" class="">Consisting of either 8, 16, 32, 64 separate lines, provides a bi-directional system for moving data between components.</p></details></li></ul><ul id="fe0e77e9-de1a-4fac-8685-b5989274752f" class="toggle"><li><details open=""><summary>Address Bus</summary><p id="8cf3344b-8a0f-49aa-ac91-7c409405a936" class="">Memory is divided into units called <strong>words</strong>. A <strong>word</strong> is a fixed size of digits typically 16,32,64 bits. Different types of processors have different word sizes.   </p><p id="63f3cb9e-f851-4e89-9a95-c869c4c02d9b" class="">Each word has its own address. Address bus transmits the memory address so data can be retrieved and sent  </p></details></li></ul><ul id="d6b1196f-3d3a-4a72-b7b3-b1a47f9e7d15" class="toggle"><li><details open=""><summary>Control Bus</summary><p id="adc258b3-b105-4dbe-9cfb-c5b2fbf5357b" class="">It is bi-directional. Its purpose is to transmit commands, timings, and specific information</p><p id="aa025aa5-878a-467f-869e-ed278c985d65" class="">Control lines include:</p><ul id="69e69551-616b-4e2c-b6a8-07826b22bbf1" class="bulleted-list"><li>Bus Request - requesting use of the line </li></ul><ul id="d8f696be-a2e7-4514-a8c5-7030c2b7491e" class="bulleted-list"><li>Bus Grant - indicates permission is granted </li></ul><ul id="781f3e50-fc67-46c7-8084-7aa8979a5658" class="bulleted-list"><li>Memory Write - causes data to be written </li></ul><ul id="db790e0c-9acb-42a0-92de-333ddb6b7d42" class="bulleted-list"><li>Memory Read - causes data to be read </li></ul><ul id="870db92c-7366-40f0-821c-7fb88fa5aad6" class="bulleted-list"><li>Interrupt Request - request to access CPU</li></ul><ul id="13b62366-5aa4-451e-a0e2-573324ccceb1" class="bulleted-list"><li>Clock - used to synchronise operations</li></ul></details></li></ul><h2 id="eb2db743-25a6-414c-8235-f3a4b196901a" class="">Arithmetic-Logic Unit (ALU)</h2><p id="91754090-a29d-4163-b10a-ed1e69bddab8" class="">This preforms logical operations on the data and can do addition, subtraction, multiplication and division on fixed or floating point numbers. It can also carry out boolean logic operations comparing values such as and, or, not, xor. </p><h2 id="3cc48806-24f6-4a42-b3e3-e311dbb5a548" class="">Registers </h2><p id="31e6c3d5-595d-4cff-9f5c-759dc26b35c9" class="">Registers operate at high speeds and complex computers can have many of these. The main one is the <strong>accumulator </strong>where all calculations take place. </p><p id="ebea55ea-4a4f-4059-ac76-27c8d32076e9" class="">There are several other special purpose registers: </p><div id="2a7867e6-8cc4-4b3c-b50e-5c140dc79388" class="column-list"><div id="27f269b1-9ad6-49d4-953a-c23ad7efb421" style="width:50%" class="column"><p id="b47badfb-6fb8-44d7-ac54-41ed88ca1074" class=""><strong>Program counter </strong></p></div><div id="0fa339d4-913b-4118-b5e7-f192b424f1f1" style="width:50%" class="column"><p id="d495d7f2-a48e-4bc6-a8f7-75accfefaf8b" class="">Holds the address of the next instruction to be executed, copied from the <strong>current instruction register. </strong></p></div></div><div id="33a658fd-e2d1-4e6b-9571-9efd73d6eb58" class="column-list"><div id="9ee3d32f-67cd-4530-aa09-779af1dfa5b0" style="width:50%" class="column"><p id="08a7a9c5-16a3-463e-b03b-b71e76a1acbe" class=""><strong>Current Instruction Register </strong>(CIR)</p><p id="75e0098b-849e-4f8c-82f1-90437ef8f0d0" class="">
+</p></div><div id="0e18f010-339e-4bef-93ac-026b951cc52d" style="width:50%" class="column"><p id="14b869ac-75b2-4373-bdb6-24a6422f29bb" class="">Holds the current instruction being executed divided into <strong>operand</strong> and <strong>opcode</strong></p></div></div><div id="a32d810b-7c8a-4f73-abee-bbaf43868103" class="column-list"><div id="2ee24878-0ccc-40eb-9a68-16986686e280" style="width:50%" class="column"><p id="203dbbd8-569c-4433-8c86-7bf423fe25e3" class=""><strong>Memory Address Register </strong>(MAR)</p><p id="d755ba5a-4325-416a-a4eb-9dbcfee90893" class="">
+</p></div><div id="bd7cc240-0dad-43e4-a239-2ab5aadbb967" style="width:50%" class="column"><p id="f797425f-66a4-406f-8390-b2d5c34967d3" class="">Holds the address of the memory location of data that needs to be fetched or written </p></div></div><div id="970f056b-b4cc-41c0-ade1-78310de75cd6" class="column-list"><div id="4e9c4a1d-ec59-4134-a89e-c010e0975073" style="width:50%" class="column"><p id="3be93ce4-05b7-4cef-8690-26ee3ff890b0" class=""><strong>Memory Data Register </strong>(MDR)</p></div><div id="1fccc9bb-c457-47d2-acef-c2f1618231c6" style="width:50%" class="column"><p id="867ec606-4585-42e1-841f-d916467e8d38" class="">Temporarily holds data that is read or written to memory, also known as <strong>memory buffer register</strong></p></div></div><hr id="8312411f-03a4-492e-bcc8-6815d8e08099"/><h1 id="fe6a0e4b-c670-49b9-9abf-06aeb746290f" class="">The Fetch-Decode Execute Cycle </h1><p id="cb5f2502-c3ea-47c9-833c-5269c2ffa52f" class="">The sequence of operations involved in executing an instruction can be divided into 3 phases- <strong>fetch</strong>,<strong> execute</strong>,<strong> decode</strong>.</p><ul id="a0aeb007-41c8-4361-a349-c0790cbcaa1b" class="toggle"><li><details open=""><summary>Fetch </summary><ul id="ee966661-1598-4708-8404-40cd66cb8073" class="bulleted-list"><li>The address of the next instruction is copied from the <strong>program counter </strong>(PC) to the <strong>memory address register </strong>(MAR)</li></ul><ul id="bd1ebc17-28f2-447f-b42b-4bc2328e68c4" class="bulleted-list"><li>It is then copied to the<strong> memory data register</strong> (MDR) and the<strong> program counter</strong> (PC) is incremented so it holds the next instruction </li></ul><ul id="9bc0c2b3-94f7-400d-a400-a0b3b56584ca" class="bulleted-list"><li>Contents of the <strong>memory data register</strong> (MDR) is copied to the <strong>current instruction register </strong>(CIR)</li></ul></details></li></ul><ul id="4e8215ef-ed1c-4376-b547-7f4d099eff35" class="toggle"><li><details open=""><summary>Decode </summary><ul id="eda5a33e-bf8d-410f-9fb5-24ee1007b1d1" class="bulleted-list"><li>The instruction is held in the CIR is decoded split into <strong>opcode </strong>and <strong>operand. </strong><p id="54e2f1a0-51d9-40c9-bb74-3981bc539372" class="block-color-red_background"><strong>Opcode</strong>  - Type of instruction and what hardware required </p><p id="b2ca9009-c87c-4801-9084-73c7aca4faf5" class="block-color-red_background"><strong>Operand</strong> -   Holds the address of the data or actual data or data to be operated on</p></li></ul></details></li></ul><ul id="78218228-6ad0-4db1-8dc4-8a44bf9ac65f" class="toggle"><li><details open=""><summary>Execute </summary><ul id="e681087d-f3a8-44de-b789-b2f3d8ff2c72" class="bulleted-list"><li>The appropriate instructions are carried out by the operand</li></ul></details></li></ul><hr id="e2a090a8-e86a-493b-93a0-9f7f95cb16c5"/><h1 id="97bfc2c1-6285-4742-a5cc-6f4fdf06ded0" class="">Processor performance </h1><p id="c60bd3bb-15d9-49a1-b2ce-b8bcf0237f78" class="">The main factors affecting processor performance are:</p><ul id="1a3e455f-44e6-4539-b77e-4474286ff4a1" class="bulleted-list"><li>Clock Speed</li></ul><ul id="d0703054-9200-49bb-8114-053e79193b0d" class="bulleted-list"><li>Number of cores </li></ul><ul id="204c027f-ecaf-40c8-bad9-b1b1f96c7344" class="bulleted-list"><li>Amount and type of cache memory</li></ul><h2 id="c5545227-b70f-4677-9a2f-e5168a92cb1f" class=""> Clock Speed</h2><p id="7996d5c6-8702-4bfd-bc3d-9100065e3144" class="">The system clock generates a series of signals. The CPU cannot preform functions faster then the clock speed. Clock speed is generally measured in gigahertz. The greater the clock speed the, the faster the instructions can be carried out. </p><h2 id="bda8bbf8-3836-4ad7-b35f-49cb835fb4a0" class="">Number of Cores</h2><p id="8b32672b-0dfa-4e38-bdbb-106ab22663ba" class="">Traditional computers (Von Newman), instructions are fetched and executed one at a time. New computers have multiple cores and are able to process twice the information at the same time. </p><h2 id="6c712481-f513-466f-9c27-a444e2353e5f" class="">Amount and Type of Cache Memory</h2><p id="92203120-8fd1-4dcb-bb06-8504d61f4ed7" class="">This is very fast memory inside the CPU. If instructions are repeated they can be stored on the cache so it is quicker to access. As cache fills up unused instructions are moved to the main memory. </p><hr id="d9caa097-94fa-4812-8c05-e323aea0cc8b"/><h1 id="8648682e-dd13-4ea8-aaa0-7bb6154d5408" class="">Pipelining </h1><p id="bd4d0c78-e3f1-4959-9178-bba6e5f20109" class="">Pipelining is a used to improve performance. At some point during the fetch-decode execute cycle at least one component is idle. </p><p id="b6af617f-14d6-4db8-8fea-5cf9a7d91884" class="">Pipelining allows for the next instructions to be fetched at the same time a process is being preformed.</p><p id="72abe307-0e07-48b4-b2bd-da8093549652" class=""><strong>Processor pipeline</strong> is divided into instruction pipeline and an arithmetic pipeline:</p><div id="c060869f-04ec-442e-839b-7f44ba8bfc85" class="column-list"><div id="43e7865a-32ca-4561-b3d1-dc91e26b9a68" style="width:50%" class="column"><p id="74c506b3-d6da-4f5b-9ba4-caf3c68bdf7b" class="">Instruction Pipeline</p><p id="c3888125-844b-459a-a78a-f9aa195e7214" class="">
+</p></div><div id="12a65246-3ede-462b-9c52-f275aef8586f" style="width:50%" class="column"><p id="73fe44d8-10d5-4baf-8cb0-57ab7a31f5ef" class="">It is when instructions are moved through the processor including the fetch and execute</p></div></div><div id="984c6b37-d2fe-417f-b11b-e378e0441755" class="column-list"><div id="1d129cdd-89f5-40ff-8e80-61c1512f7c58" style="width:50%" class="column"><p id="b27a2922-0078-4043-abc0-914a573c4b00" class="">Arithmetic Pipeline</p><p id="e76e2c9e-5fb4-4dff-90f0-ec8b98ac0f46" class="">
+</p></div><div id="0099e341-bfd4-4e2b-8a4e-a6a63e6649c9" style="width:50%" class="column"><p id="6c63e170-7f85-4db3-86c8-b53ef342af44" class="">Represents the parts of an arithmetic operation that can be broken down and overlapped</p></div></div><hr id="0bb285e9-39fb-4b15-b8d0-d54670aaf509"/><h1 id="ca6c7d05-2534-4e7d-ae58-a600cc35dafe" class="">Words and Word Sizes </h1><div id="279b2467-d8cc-41b8-a168-2a635b97b0f9" class="column-list"><div id="7401218d-5809-4207-9af1-cf7a2f011071" style="width:50%" class="column"><h2 id="82ba37b2-854c-47ba-aad9-03c45fd84d64" class="">Address Bus </h2></div><div id="9a725b86-4dcf-4ed8-8136-a3644e5d4326" style="width:50%" class="column"><p id="f72f815a-7607-4bf1-bd48-4c09bbb7e3a2" class="">When the processor wants to read a word of data from memory, it first puts the address of the desired word on the address bus, it first puts the address of the desired word on the address bus. </p><p id="e45a4d0d-e8f6-4ba5-becf-bfe4d4a4567f" class="block-color-red">The width of the address bus determines the maximum possible memory capacity of the system. </p></div></div><div id="69ea447a-4e23-4248-ad1e-bffed4978215" class="column-list"><div id="c52bad72-bce1-403c-a7b7-f65659a2f578" style="width:50%" class="column"><h2 id="5dcf6374-04bc-4f18-8925-cb7b35cf208a" class="">Data Bus </h2><p id="e6a9ec71-b17e-44aa-af5f-5e7d5ce64cb5" class="">
+</p></div><div id="44f5bdb0-3548-4043-83b7-57c74ab036cf" style="width:50%" class="column"><p id="73f0a929-5d77-48dc-9718-6f7664da3a64" class="">The data bus transmits the data held in a word of memory, between processor components and memory. </p><p id="c3bc47b8-92db-4315-9cb1-ee0489433dd1" class="">If the data bus is 16 bits wide, a word cannot hold an integer larger than 2^16 -1. A wider bus can transmit more data at a time</p></div></div><h2 id="22933ae5-6bb2-4aaf-a346-896473fdfcac" class="">How this related to Assembly Language</h2><p id="85ee5294-1344-4e1b-a90e-df644f4066da" class="">In assembly language, operation code (opcode) will be expressed as a mnemonic such as ADD, SUB, LDA. With 6 bits for opcode there cannot be more then 2^6 different instructions. </p><p id="87aa71e9-be17-4700-a965-e4d9e95e2d79" class="">  </p><hr id="8289fa0b-7272-4fff-ae21-9dfd9dfe3de4"/><h1 id="4ab426b4-5692-4794-9d1a-d35416bb12e2" class="">Different Architectures</h1><p id="32b4b5b9-8570-402b-96d3-fa291989edcb" class="">The <strong>von Neumann architecture</strong> specifies the basic components of a computer and processor is which a shared memory and bus is used for both data and instructions.</p><p id="22e9c4e8-07ec-4711-910a-51046551f3af" class="">A <strong>stored program concept</strong> can be defined as: <em>machine code instructions are fetched and executed serially by a processor that preforms arithmetic and logical operations</em></p><ul id="c7b4b2e0-1c94-490c-8277-542f4c34a844" class="bulleted-list"><li>A program must be in the main memory to be executed</li></ul><ul id="7b5f4202-043e-4fcf-a919-e2e4688b86f6" class="bulleted-list"><li>The machine code instructions are fetched from memory one at a time.</li></ul><p id="f3308ebc-14a5-4682-84f4-d77c1fa07872" class="">Most computers are now built upon this principle.</p><div id="6fa354a4-aa17-4e38-a43f-dd5369d96aae" class="column-list"><div id="494da5d5-9051-476a-91c9-90b6e1fb9f44" style="width:50%" class="column"><h2 id="ba72d5a8-61d3-4c49-a2d8-fad9dafce3f6" class="">Von Neumann Architecture</h2></div><div id="a1913c41-b2ab-4ee3-aa63-e2af8c165735" style="width:50%" class="column"><p id="7f402a02-0267-41e5-a09d-dd7a00a08ab5" class="">The same data bus is used to transfer both data and instructions. Similarly, a single bus is used to transfer the addresses of data and instructions. The same word length is used for all memory.</p></div></div><div id="6b031b09-e115-4f68-be08-8aa7936497d0" class="column-list"><div id="e79b0f10-4af2-4021-afe3-bc04d740d5be" style="width:50%" class="column"><h2 id="60aa3f99-98ec-4a51-984a-cea14d740fea" class="">Harvard Architecture</h2><p id="ba27e385-8448-47de-b8c0-c35edb6dd4ba" class="">
+</p></div><div id="b9b4ff61-3882-4152-9650-996a1fcd508a" style="width:50%" class="column"><p id="6da61001-3ee3-40a1-a4d7-e081a8df5b62" class="">Harvard architecture is used mainly for embedded <strong>Digital Signal Processing</strong> systems, such as audio and radar processing.</p><ul id="387f0ed8-cbab-4085-80c3-1624becfa83c" class="bulleted-list"><li>Instruction address bus can be wider then the data bus</li></ul><ul id="c85346db-340d-4b6b-bb77-438d3a63d18a" class="bulleted-list"><li>There is much more instruction memory than data memory</li></ul><ul id="bd6deec3-95bb-41e1-b738-8367af5b16fb" class="bulleted-list"><li>Instructions may be held in a read only memory while a data memory requires read-write memory</li></ul><p id="f1af39e1-1b66-4273-8611-b55d482df4c9" class="">
+</p></div></div><p id="0f5c03c7-433d-4faf-94c5-a6f855c6ca2d" class=""><strong>Embedded systems</strong> include special-purpose computers built into devices often operating in real time. Harvard architecture is generally faster because data and instructions can be fetched in parallel.</p><p id="d81364f6-5113-4ed8-8d1c-02debf8bda01" class="">
+</p><h2 id="9dd5ba09-725e-4bcb-8d3b-36cc00fbd82d" class="">Comparison of Von Neumann and Harvard Architectures</h2><p id="092b8616-c064-4b5f-a23d-a661a2a57bfa" class="">Von Neumann Harvard Architecture used in conventional processors in PC&#x27;s only with control functions</p><ul id="835cca57-7a8d-4462-9b20-1aa1813c90c5" class="bulleted-list"><li>Used in digital processing and embedded systems</li></ul><ul id="4da71cea-13ed-4670-8a75-19ace5e5d77d" class="bulleted-list"><li>Data and programs share the same memory</li></ul><ul id="9232eded-3445-4760-beb8-9f8bdc854976" class="bulleted-list"><li>Instructions and data held in separate memories</li></ul><ul id="b4428ca1-3c4e-4b9d-a3f6-f6e175540825" class="bulleted-list"><li>One bus for data and instructions</li></ul><ul id="09c41baf-3ce3-4c03-86ac-08e2038fdf9d" class="bulleted-list"><li>Parallel data and instruction buses may be used</li></ul><ul id="904f5018-4f00-431b-947e-b75b7d2a47b8" class="bulleted-list"><li>Programs can be optimised for size</li></ul><ul id="71f1e2ed-3023-42dc-8602-55fba7d51374" class="bulleted-list"><li>Programs tend to be large</li></ul><figure id="0e49e7fe-d379-430d-a6a7-d77dc814d3e7" class="image"><a href="https://www.polytechnichub.com/wp-content/uploads/2017/04/Harvard-architecture-and-von-Neumann-architecture.jpg"><img src="https://www.polytechnichub.com/wp-content/uploads/2017/04/Harvard-architecture-and-von-Neumann-architecture.jpg"/></a></figure><p id="6c721454-7626-449a-91f9-d546cf217c13" class="">
+</p><h2 id="a2980478-f848-497a-8715-51802d06736d" class="">Contemporary Processor Architecture</h2><p id="9f0c8f7f-3236-4410-82d9-7f9e15d3f2e7" class="">Modern CPU chips incorporate aspect of both Von Neumann and Harvard architecture. There is one main memory, but CPU cache memory is divided into an instruction cache and data cache.</p></div></article></body></html>

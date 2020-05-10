@@ -1,0 +1,624 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Applications Generation</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="caf58d14-d0d0-4a02-91e2-83db2edec52b" class="page sans"><header><h1 class="page-title">Applications Generation</h1></header><div class="page-body"><p id="73ee506b-56a5-45e2-bba9-9b5cc5d5c632" class="">Software may be grouped into separate categories:</p><h2 id="fd8e4b7c-39e2-40c8-8070-2b0221a94946" class="">Systems Software </h2><p id="b946e320-09d7-4fba-9b1a-af4a8e0a45f1" class="">System Software is the software needed to run the computer&#x27;s hardware and application program.</p><ul id="ec1121b8-5531-4ba2-85aa-50e2207d79a3" class="bulleted-list"><li><strong>Operating Systems </strong></li></ul><ul id="2ea35221-087b-4848-be21-cd8cd54f765b" class="bulleted-list"><li><strong>Library Programs</strong></li></ul><ul id="e2afc3ed-6796-4f39-8616-dbd3d2b71c1b" class="bulleted-list"><li><strong>Utility Programs </strong></li></ul><ul id="9256976b-3370-4f3d-8cf4-cf2f7b4ef624" class="bulleted-list"><li><strong>Translators </strong></li></ul><h2 id="ea990a99-956a-4169-98d5-4e3bedb40a27" class="">Application Software</h2><ul id="f2f21d2e-e2ad-416b-b4fe-2c9db7dea403" class="bulleted-list"><li>Off-the-Shelf </li></ul><ul id="2765805f-c4c5-4a0e-93c4-ba02b0eb2ee3" class="bulleted-list"><li>Custom Written </li></ul><ul id="8200eee8-784b-4929-9824-b48a31e08d2e" class="bulleted-list"><li>Proprietary </li></ul><ul id="57e27ca0-6838-40a5-990a-2962a0560714" class="bulleted-list"><li>Open Source </li></ul><hr id="dc7fe83a-9ccb-4acc-b3b8-a0702dbbe760"/><h1 id="19f20b48-c8f8-469d-bd14-db18c4f2695a" class="">Systems Software</h1><h2 id="4dc93d14-b095-462a-be95-b24d1c1d71e7" class="">Operating Systems</h2><p id="ebd25585-af92-4102-b922-01e03475afaf" class="">It has many functions such as resource management, such as communicating with all the components and hardware  </p><p id="11334dc1-45bb-478e-8b62-3991f9495d65" class="">Provision of UI to enable the user to preform tasks such as running application software</p><h2 id="47799cc2-3fe5-48dd-8b58-15bf20bc9408" class="">Utility Programs </h2><p id="2f23c8de-51d1-48a8-9d5a-a1127634dcd3" class="">It is a system software designed ti optimise the performance of the computer or preform tasks such as backing up files, encryption and providing a firewall.</p><ul id="a75ec618-680a-4844-8e76-24a6d0bcdc33" class="toggle"><li><details open=""><summary>Disk Defragmentation </summary><p id="9a2089fe-534a-4db5-a1f7-de3ae7c61846" class="">A disk defragmenter is a program that will reorganise a magnetic hard-disk so that files which have been split up will be recombined, making it easier to read.</p></details></li></ul><ul id="56393172-388a-40f3-aa73-ff2d7d10fc4f" class="toggle"><li><details open=""><summary>Automatic Backup </summary><p id="e7a0c156-87e3-485d-8e04-c6fbe0bc4d66" class="">This allows the user to specify where they want the back up to be stored, what they want to back up and how to back them up and when to run the backups. </p></details></li></ul><ul id="819caa4c-2f23-43a4-9398-5f8bd7212474" class="toggle"><li><details open=""><summary>Automatic Updating </summary><p id="561d3331-130d-4f77-9e54-ccc563226fb6" class="">An automatic update utility makes sure that any software installed is up-to-date. it regularly checks the internet for updates and these will then be downloaded. </p></details></li></ul><ul id="6c9756f7-e68e-4be7-8f51-a88848c4036b" class="toggle"><li><details open=""><summary>Virus Checker</summary><p id="983184c6-ee34-4737-857c-3194805d9d89" class="">A virus checker scans the hard-disk for any files that can be viruses and deletes them</p></details></li></ul><h2 id="2524cdb9-49eb-4719-9817-28b836b6deca" class="">Compression Software </h2><p id="c9032fb9-6c99-4b1e-95d4-1079bcac351f" class=""> Several utility programs are included to copy, move, and delete files. Some other software is included for compression this makes it easier to transmit files across networks. </p><hr id="8ebf4e68-22d3-43ed-a278-590351f84f96"/><h1 id="4a28a11f-c2e0-4bfa-86fc-a0e0a57aface" class="">Application Software </h1><p id="720eb600-38b3-4afb-a74f-89aefddae5d0" class="">These software can be categorised as general-purpose, special-purpose or custom-written. </p><p id="08908620-3d49-477f-b3b0-8ea50cc7b10c" class=""><strong>General-purpose software </strong>such as word-processor, spreadsheets and powerpoint.</p><p id="9daf4622-ca29-461a-8ea8-122a75059864" class=""><strong>Special-purpose software </strong>preforms single specific task, such as payroll management and booking system.</p><div id="70c2990a-a080-42bc-b342-b60b2b4e4f80" class="column-list"><div id="83fa0cda-8f05-47ba-803f-2e7823c3c5f4" style="width:50%" class="column"><h2 id="da118490-a68c-4361-bff9-6c259ae40291" class="">Off the Shelf</h2></div><div id="0d984ae4-5807-4b8e-9c58-e3e23921aec4" style="width:50%" class="column"><h2 id="639d406a-fc02-4931-ba5d-72be24f64596" class="">Bespoke Software </h2></div></div><div id="5c1b4801-7a11-43c7-9f31-8b7b99ddded5" class="column-list"><div id="6cebfdba-3fc9-43e0-b7fb-2fe18ce063e9" style="width:50%" class="column"><p id="007ca0d1-58de-41dc-8725-7c28ed0e7dcc" class="">Less expensive </p><p id="508002cf-7f36-43ff-a98a-4b3133a71508" class="">Unwanted features </p><p id="9811a091-df04-460b-aa55-854f643ecdb5" class="">Ready to be installed</p><p id="5d277bf9-c544-4f7a-a37f-fe4653362767" class="">Well documented </p></div><div id="c1e51cd4-947b-4251-9845-51ae953222a6" style="width:50%" class="column"><p id="e24eec29-cc08-4efb-bdb7-39546d72fe14" class="">More expensive </p><p id="38298599-4dd2-4959-914a-118ec58f3224" class="">Long development time </p><p id="8cc3037f-3bb5-4b39-b977-49e30d507679" class="">Customised features </p><p id="e9869f56-16b2-44c9-a4e0-5717da487e89" class="">May contain errors</p></div></div><hr id="0655e4e3-af1d-407c-b4c4-76b5f23fdabd"/><h1 id="77546472-0641-4b54-a47e-b6c3fe8d5c09" class="">Open Source vs Proprietary</h1><h2 id="313225e2-cddb-4764-af52-5e904f5ac33b" class="">Open Source </h2><p id="3ebbdac0-26e7-4804-b8bc-ac403f852f07" class="">It is software that has no charge, and that the source code is openly available so anyone can modify it. Any software created from open source software must be &quot;open&quot;</p><h2 id="bb78319b-cd06-4b78-92c1-d46fff262fe3" class="">Proprietary</h2><p id="66a0ae9d-3b07-41bb-84fc-2760fcfb7125" class="">It is sold with restrictions on how the software can be used, for example the license may specify only one user. </p><hr id="311a325e-02b1-45ea-8190-e484b34fc07a"/><h1 id="5641e6ca-35cb-40e9-bae5-17967a493612" class="">Programming Language Translators </h1><h2 id="00a25ba9-469e-477f-b9d0-a2e20157843d" class="">Assembler </h2><p id="a71f154f-f4bb-4976-9ad6-19807384771b" class="">It is a low level language, with each instruction being equivalent to one machine code instruction. The machine code instructions can only execute on that processor, so each processor has its own instruction set. </p><p id="fff34579-9fbe-4971-8785-84188ad6f6ea" class="">Before an assembly code and be run it must be translated into assembly code, which is done by the assembler. The input to the assembler is called the source code and the output is called the object code. </p><h2 id="cbd6800f-8f66-4a77-8444-0c7e6883d7cc" class="">Complier</h2><p id="4809eda9-20b9-4564-be65-9fef5df058a7" class="">A compiler is a program that translates a high level language into machine code. The input is scanned multiple times each time preforming different checks and building tables of information needed to produce the final object code. </p><p id="a5fae277-50d6-4143-930d-671af1efca5a" class="">Different hardware platforms require different compilers. Object code can be saved and run again without the presence of a compiler. </p><h2 id="2166f623-dc8b-4f6b-b53e-d1760b926a71" class="">Interpreter</h2><p id="1caeb82b-7678-4368-8fa2-5c52d2b39cfe" class="">An interpreter is a type of translator. It looks at each individual line of code, analyses it, and if there are no errors it translates that line into machine code and runs it. </p><div id="ccd968a3-3648-4105-9136-3ce4da730a27" class="column-list"><div id="dae7830f-de8e-419b-8d22-13a5151eb566" style="width:50%" class="column"><h2 id="93a9a444-efba-4e20-a201-81c2d194d86d" class="">Compilers</h2><p id="27d158d9-1667-4e41-8746-a6bc371003b6" class="">Once compiled can be run with out recompiling</p><p id="c8cd5d70-5edc-4bf3-b56f-9c1642f0931b" class="">Executes faster</p><p id="c504fb06-9aa4-4329-aa8e-da848c2415a3" class="">More secure (harder to reverse engineer) </p></div><div id="70715811-a456-4c17-b2b6-3ab0d903c8f7" style="width:50%" class="column"><h2 id="3175e6b4-a59a-4fd1-8481-f24c5ca86240" class="">Interpreters</h2><p id="4565cf40-d7ca-43f7-8336-941abb943d71" class="">Platform independence</p><p id="6c8c0ad8-129e-4b3e-8697-59d4012786b2" class="">No need for lengthy recompilation</p></div></div><hr id="6161be33-185f-42f7-94ba-7c35ae616cb2"/><h1 id="78369586-b9e7-4471-888d-de51833bbb07" class="">Stages of Compilation</h1><p id="5bec3a86-c918-4241-b8fd-bb034ab1cdbc" class="">There are 3 stages of compilation <strong>lexical analysis, syntax analysis, code generation </strong>and <strong>optimisation. </strong></p><h2 id="5711cd5a-cc12-4c93-84ea-6dcdf3068c15" class="">Lexical Analysis</h2><ul id="74253b67-63cd-42e8-b376-3dacabdbc58a" class="bulleted-list"><li>Superfluous spaces are removed</li></ul><ul id="f253f08b-9c08-4407-bf6b-79283392dd20" class="bulleted-list"><li>All comments are removed </li></ul><ul id="5260a561-8231-4b44-b735-183fe4e94d3a" class="bulleted-list"><li>Simple error checking </li></ul><ul id="2fa31401-2f22-4a54-8d5d-51ede0135757" class="bulleted-list"><li>Keywords, variables, constants and identifiers are replaced by tokens (symbol table)</li></ul><p id="342530c0-7293-41de-9ec8-6689585d1e07" class="">
+</p><p id="7b9492bc-c1e8-46d0-85aa-575c7b84e1f4" class="block-color-gray">The symbol table plays a central role in compilation. It contains every keyword in the program. It stores: </p><ul id="fb06e87e-ee54-4af3-8787-b6309cd1a6b3" class="block-color-gray bulleted-list"><li>The keyword </li></ul><ul id="fb959e56-6509-45f7-9e96-0f048db355c7" class="block-color-gray bulleted-list"><li>The kind of item (variable, array, procedure)</li></ul><ul id="b3bfff8a-e4ca-427b-b8ef-1e901292d45b" class="block-color-gray bulleted-list"><li>The type (integer, real, float)</li></ul><ul id="0916a4c3-02ae-4b72-ae0e-47dbe83f4146" class="block-color-gray bulleted-list"><li>The run-time address</li></ul><ul id="4381977e-aa56-4034-abdd-8bd9e39ce191" class="block-color-gray bulleted-list"><li>Pointer to accessing information (bounds in an array)</li></ul><p id="9fc7e55f-036e-4954-bc4d-17b2c42000e4" class="block-color-gray">Since the lexical analyser spends a long time looking up the symbol table. The most common way of organising it is using a <strong>hash table, </strong>where each keyword is hashed to produce an array subscript.</p><h2 id="c8b660ca-a655-4653-bba5-1b058ae72629" class="">Syntax Analysis</h2><p id="2da0b65a-cfb7-4aeb-86a3-172c6c035f7b" class="">It is the process of determining if the sentence makes sense in the language. </p><p id="485903b5-24c2-4c73-b3ce-a2bef3678159" class=""><strong>Parsing </strong>is the task of applying a set of rules to check if it makes sense. <strong>Stacks </strong>will be used to check if brackets are correctly paired. All expressions will be converted to <strong>reverse polish notation</strong> from which machine code can more easily be generated. </p><p id="73d3f2ae-765e-47f1-b395-d2501d8d4dec" class=""><strong>Semantics </strong>define the meaning of the code rather then the grammar. Such as check if an undeclared variable has been used. </p><h2 id="c78e9476-e957-47d2-8d12-e834a0b2355e" class="">Code Generation and Optimisation </h2><p id="33d365e8-c74b-4093-91c9-ee2574651157" class="">Code optimisation attempt to reduce the execution time of the object program, by eliminating redundant instructions.</p><p id="bf0719cf-df14-40e6-9552-b527ea2c5a3e" class="">However this can increase code compilation time, and can lead to unexpected results. </p><hr id="4e26d65b-b9c9-41d2-b136-aaa1a3cd7fdf"/><h1 id="183d3154-bc26-471e-94b2-9bfe6bc71f1e" class="">Links and Loaders</h1><p id="8fa5e9bc-d1d2-40b0-8c15-52285c082ba5" class="">Once code is complied any subroutines must be added, such as random number generator. It is the job of the <strong>linker </strong>to put the appropriate machine addresses in. </p><h2 id="9b786a92-ad3e-4873-ad96-ac09f181aceb" class="">Use of libraries</h2><p id="a6f998bf-69e1-41c4-a2f6-9853616b982e" class="">These are pre-complied programs that provide extra functions that can be used from the program. </p><p id="d19c13dc-0b38-4eb2-b664-1dcab9be5c89" class="">A couple of advantages are that the code used is error free and it saves the user from re-inventing the wheel.  </p><p id="7ae20dbc-de6a-4bbd-bb64-f492c33c7add" class="">
+</p></div></article></body></html>

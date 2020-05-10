@@ -1,0 +1,625 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Methods for Investigating and Testing Materials</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="b29a6d92-ca15-480f-b605-f3fb89b16b35" class="page sans"><header><h1 class="page-title">Methods for Investigating and Testing Materials</h1></header><div class="page-body"><p id="1f9f4b9e-07dc-4455-8948-44d3be328943" class="">When ever testing a material some of the variables have to be kept the same to ensure it is a fair test. These variables are:</p><ul id="c8ecbab4-281b-44e2-b8ea-79acfc7c43a8" class="bulleted-list"><li>Size of material </li></ul><ul id="3bb045f1-10b4-4dd6-8d50-654317281aa6" class="bulleted-list"><li>Environmental Conditions </li></ul><ul id="5f8c73c5-2b1f-4793-be6a-52cd027ffc81" class="bulleted-list"><li>Testing Equipment </li></ul><ul id="f9170be8-22ce-4cd0-be2f-34a0c039ea61" class="bulleted-list"><li>Force Applied </li></ul><ul id="5590ea6f-29a8-4e21-9c5b-069c56ccb714" class="bulleted-list"><li>Method of Force</li></ul><ul id="ebe4a1a8-b7b1-44fa-9ff6-443e85331648" class="bulleted-list"><li>Position of Force </li></ul><ul id="25f74d42-386a-499b-a7a6-9f4a75d1334e" class="bulleted-list"><li>Individual Taking Measures </li></ul><hr id="1d437d2b-cfe7-41c2-9ece-b89d9e44a0b0"/><h1 id="d9c74b03-1e50-4469-b4a8-eecb2892ac4b" class="">Workshop Tests</h1><h2 id="bc430a3d-10a4-41e6-bbf1-543c600fc01e" class="">Tensile Testing</h2><p id="86ae0f3d-e216-4d57-a24e-9b07d45db168" class="block-color-gray">The ability to resist stretching forces</p><p id="2ce26fd0-e40c-488d-98ce-210433a324a4" class="">Clamp material into vice and apply a lad such as weight to the unclamped end. The deflection can then be measured, the one with the least deflection the more tensile strength the material has. </p><figure id="e67ce9f3-05a5-4cb8-b315-840c1dc0630f"><div class="source"><a href="Methods%20for%20Investigating%20and%20Testing%20Materials%20b29a6d92ca15480fb605f3fb89b16b35/Unknown-4.txt">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2ea38c13-526e-4e60-91d7-315708a82f96/Unknown-4.txt</a></div></figure><figure id="8f099d7e-99ab-44ca-84f7-77a6e9e26c1d"><div class="source"><a href="data:image/png;base64,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">data:image/png;base64,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</a></div></figure><h2 id="7a386cec-8872-4adc-b9e9-1e27b4f2e420" class="">Toughness Testing</h2><p id="dae296c3-aa08-4690-96e3-b4389605d5d1" class="block-color-gray">The ability to absorb impact force</p><p id="60ab3ccf-ce07-4dc3-8ae4-57feaaca1a71" class="">Test piece is clamped into a vice. Each sample is hit with the same force using a hammer. Force should be increased till material bends or snaps. </p><figure id="50c1e0d1-c749-40ce-81c0-e1f10159f4b9"><div class="source"><a href="data:image/png;base64,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">data:image/png;base64,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</a></div></figure><figure id="49764141-4c82-40f8-b0d1-537c174e643c"><div class="source"><a href="Methods%20for%20Investigating%20and%20Testing%20Materials%20b29a6d92ca15480fb605f3fb89b16b35/Unknown-5.txt">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4f22a614-a525-4fee-b336-23bfee6579f9/Unknown-5.txt</a></div></figure><h2 id="482751b9-9379-4ef0-ad55-297a2cce512f" class="">Hardness Testing </h2><p id="9544b68c-0d96-49c4-9dc9-5966156cbdd9" class="block-color-gray">The ability to withstand abrasive wear and resistance to surface indentation</p><p id="9a6df3bd-fcca-4548-bced-9e62857dca14" class="">Abrasive wear can be tested by running a file over the surface, the less the scratches the better the hardness.</p><p id="0f9ed7e4-cf8e-4979-a288-e04a7f95a7e2" class="">Resistance to surface indentation can be tested by using a dot punch and a hammer. The dot punch is struck leaving an indentation on the material. The more the indentation the less the hardness. </p><p id="f1821521-a2d2-4578-9a0e-22695e91f35c" class=""> </p><div id="b0c2b2d8-5786-49ff-93b5-b7f83f64994d" class="column-list"><div id="3ebf09a1-5e3d-43b6-ab86-8e67c152efce" style="width:50%" class="column"><figure id="f99d5088-9f9b-4119-ac1e-f095a64e2c1b"><div class="source"><a href="Methods%20for%20Investigating%20and%20Testing%20Materials%20b29a6d92ca15480fb605f3fb89b16b35/Unknown-7.txt">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/61b99d02-3644-475f-94d5-e6a039d8fad5/Unknown-7.txt</a></div></figure><p id="c61b85c5-d000-4e6a-b6a1-a998011a7cc2" class="">
+</p></div><div id="2f34f0c5-8a6b-441f-a21e-6a6d09daa6d6" style="width:50%" class="column"><figure id="432d1006-be56-4c76-bdbc-5df03b1b471f"><div class="source"><a href="Methods%20for%20Investigating%20and%20Testing%20Materials%20b29a6d92ca15480fb605f3fb89b16b35/Unknown-6.txt">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dcd19887-0a51-4875-ace5-4e8a04bf2906/Unknown-6.txt</a></div></figure></div></div><figure id="45ad5a14-1381-4d68-b625-1838c14ae9b4"><div class="source"><a href="data:image/png;base64,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">data:image/png;base64,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</a></div></figure><h2 id="181ac0a7-9769-401e-a665-06b38f0387cb" class="">Malleability and Ductility Testing </h2><p id="87ba0efb-c3a3-4cb4-98d4-c1e880641494" class="block-color-gray">The ability to withstand bending</p><p id="cb156d28-f850-4f80-b89c-d90125afbbb1" class="">Secure a test piece in vice and try to bend it 90˚. Cracks on outside of the bend show lack of ductility. Cracks on the inside show lack of malleability. </p><figure id="e533cfd2-38b6-4c4d-88ac-3a64da026e01"><div class="source"><a href="Methods%20for%20Investigating%20and%20Testing%20Materials%20b29a6d92ca15480fb605f3fb89b16b35/Unknown-8.txt">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/021cc0fe-21a9-47fb-be9c-308d07cdb38e/Unknown-8.txt</a></div></figure><h2 id="ed83abba-1280-4fec-8f80-c5d4a57b2b1f" class="">Corrosion Testing </h2><p id="d16eea73-fec9-4e81-9e12-49e0a3df96ce" class="block-color-gray">The ability to resist chemical change </p><p id="2e2568dd-50b8-447e-89ec-9328f73dd4ba" class="">Materials can simply be placed outside and see how the weather effects them. Materials are then visually inspected.</p><h2 id="f0a847df-74f8-40cd-9038-5438c76fbdbc" class="">Conductive Testing </h2><p id="9f621bef-11bb-4e3a-87c4-4431a4e815dc" class="block-color-gray">The ability to withstand electrical or thermal conductivity</p><p id="51bb47b4-a5cc-4321-8e93-eb3f5b4fd0a5" class="">Electrical conductivity can be tested my placing two wires at a set distance and measuring the resistance of the material. </p><p id="aa5373a9-9114-45f8-b6c9-89c8f90c3523" class="">Thermal conductivity can be measured by heating one end of the test piece and seeing how long till the other side raises by a set amount of temperature </p><figure id="464cb74d-c4ce-4104-b54d-6be55a2f3ada"><div class="source"><a href="Methods%20for%20Investigating%20and%20Testing%20Materials%20b29a6d92ca15480fb605f3fb89b16b35/Unknown-9.txt">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e1ee1967-a0c4-49bb-9f66-7f638c2c7de1/Unknown-9.txt</a></div></figure><hr id="9fc300c7-e145-4782-b919-3d0db1ded1f3"/><h1 id="55a22856-c4ce-4fac-9497-efb325b3788f" class="">Industrial Tests </h1><h2 id="15e2c35c-4ae2-45b6-85c0-f3bee2083be5" class="">Tensile Testing</h2><p id="b201bf21-1ce7-4248-a672-fb08dc458ed7" class="">A test piece is placed into a tensometer machine and held in claps at each end. As the piece is being stretched the load and distance is plotted and is carried on till &#x27;necking&#x27; point.</p><figure id="67b5c1d6-a893-495e-bae3-9129cdbd99be" class="image"><a href="Methods%20for%20Investigating%20and%20Testing%20Materials%20b29a6d92ca15480fb605f3fb89b16b35/TENSILETEST.gif"><img style="width:600px" src="Methods%20for%20Investigating%20and%20Testing%20Materials%20b29a6d92ca15480fb605f3fb89b16b35/TENSILETEST.gif"/></a></figure><h2 id="311e5002-65aa-4b92-9036-51f6b1e387db" class="">Toughness Testing</h2><p id="ed12ef8c-d901-4a32-a98e-3ae7282fd49c" class="">The Izod impact test is used to test the toughness of a material. A notched test peice is held vertically in the vice of the test machine. A pendulum is released and strikes the test piece. The energy absorbed is calculated by the height of the swing after the impact. The further it swings the lower the toughness. </p><figure id="22c6502a-b207-41fe-b8ad-1a89432a59f4" class="image"><a href="Methods%20for%20Investigating%20and%20Testing%20Materials%20b29a6d92ca15480fb605f3fb89b16b35/impacttest.gif"><img style="width:750px" src="Methods%20for%20Investigating%20and%20Testing%20Materials%20b29a6d92ca15480fb605f3fb89b16b35/impacttest.gif"/></a></figure><h2 id="a276fbc5-6c2a-45de-8794-7066db012344" class="">Hardness Testing </h2><p id="ff4e2d25-49e7-438b-b0b8-6d1c946bf1f1" class="">There are 3 common tests for hardness: Rockwell, Brinell, and Vickers pyramid. </p><p id="240f3306-2291-44bf-a90e-2ff5532ab38d" class=""><strong>Rockwell Test </strong>a preload is applied to the material using a diamond indenter. An additional load is then added and the distance between the preload and the applied load is measured and the hardness is tested. </p><p id="0cc122a3-688f-4eac-a2e4-679146c975cc" class="">
+</p><p id="f5a96916-d632-4e12-8c5b-039e5fda7731" class=""><strong>Brinell Test </strong>a steel ball  is forced into the materials surface. The diameter of the indent is measured. The smaller the material the harder the object. </p><p id="656daf41-2b6f-4e3f-b0ae-67378ecf3e3e" class=""><strong>Vickers Test </strong>it uses a diamond square based pyramid to indent the surface. A microscope then measured the indent. The smaller the indent the harder the material. </p><figure id="55e38341-f813-49a2-8a1e-d8fe5957e63e" class="image"><a href="Methods%20for%20Investigating%20and%20Testing%20Materials%20b29a6d92ca15480fb605f3fb89b16b35/hardnesstest.gif"><img style="width:750px" src="Methods%20for%20Investigating%20and%20Testing%20Materials%20b29a6d92ca15480fb605f3fb89b16b35/hardnesstest.gif"/></a></figure><h2 id="bd9b8c3a-8801-4763-a40d-0378cd6b4fe9" class="">Ductility and Malleability Testing</h2><p id="c2bb3eed-c0eb-4b27-b18a-9fd571014fbd" class="">A piece is placed into a bending machine and is bent to a pre determined angle. The material is then bent to a predetermined angle. </p><hr id="fed4c8d9-914e-4728-9003-0d7ee4b72b23"/><h1 id="4d7977fb-be1b-4257-b478-8c8c0b7f5c1b" class="">Non-destructive Tests</h1><p id="b2d9671d-8f01-4100-a108-5e5a0e8b5f34" class="">Non-destructive testing is usually carried out on products that can have internal defects</p><h2 id="e3bcc6a1-e45f-434e-9375-e389ae0c6623" class="">Ultrasonic Testing</h2><p id="de89b33c-dc2a-459f-8d76-2ceee0f7983f" class="">This tests for internal fractures</p><h2 id="5d858c4e-8b5a-45e3-8e92-b9effa73d2ec" class="">X-ray Testing </h2><p id="9cd9ab8f-88cf-4255-a91d-822d49ce4f73" class="">A transducer generates sound waves which is puled into the material, if there is a fracture the pulse would bounce back quicker as it will be partially deflected. </p><p id="741eb5dc-c3c9-4fe4-bfef-a5d33b825cbb" class="">An X-ray beam passes through the material and tiny minute imperfections can be seen such as hairline cracks. </p><p id="007e8f4a-db06-4567-b55a-4a34bf2e7f9f" class="">
+</p></div></article></body></html>

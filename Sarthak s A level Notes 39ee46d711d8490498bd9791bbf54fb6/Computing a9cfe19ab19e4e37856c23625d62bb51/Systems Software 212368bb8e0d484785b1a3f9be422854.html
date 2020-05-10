@@ -1,0 +1,626 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Systems Software</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="212368bb-8e0d-4847-85b1-a3f9be422854" class="page sans"><header><h1 class="page-title">Systems Software</h1></header><div class="page-body"><h1 id="f3672221-279d-414f-84d6-7bb9de86c1d5" class="">Operating Systems</h1><p id="87a19e7e-d0c5-4fa0-9e60-2d78739724b4" class="block-color-red">An <strong>Operating Systems </strong>is a program or set of programs that manages the operations of the computer for the user</p><p id="f30f03b0-c69a-4012-a620-6bdad7824c99" class="">It acts like the bridge between the user and the computer&#x27;s hardware, since the user cannot communicate with hardware directly. </p><p id="e3bb9d28-92c3-412c-94ff-93d8ab72080d" class="">The operating systems is held in permanent storage, e.g a hard-disk. A small program called the <strong>loader</strong> is held in the ROM. The loader in the ROM sends instructions to load the operating system by copying it from storage into RAM. </p><h2 id="b9530dc8-d34c-493a-bd28-e089d188f9e1" class="">Functions of an OS </h2><p id="5cea8600-8bbd-4ddc-a794-112e3cc5ca81" class="">Apart from the UI, the operating system is able to do:</p><ul id="f56fe479-2cc7-4a2d-8169-fa681006261e" class="bulleted-list"><li>Memory Management</li></ul><ul id="84e37dda-5796-4031-ad70-aab9b4031ed8" class="bulleted-list"><li>Interrupt Service Routines</li></ul><ul id="f2b5627d-c775-422a-ae1d-04c217cda738" class="bulleted-list"><li>Processor Scheduling</li></ul><ul id="b1981b52-f24f-49e1-bc69-182ef7817544" class="bulleted-list"><li>Backing Store management </li></ul><ul id="584807d7-5876-4f4b-a617-7a78a206749a" class="bulleted-list"><li>Management of all Inputs and Outputs</li></ul><h2 id="4270bbf4-2802-4321-9108-cf534c2ca2ea" class="">Memory Management</h2><p id="7c343533-e7a9-448b-8b8d-5f03896cb7fe" class="">When a user is running multiple applications at once. The computer must allocate a specific area of memory whilst the computer is running. So when the user moves to another application, each applications memory must be stored simultaneously. The allocation of memory is controlled by the operating system. </p><h2 id="418eba3d-5313-4c8c-b44d-c7d0c15e3aa6" class="">Paging and Segmentation</h2><p id="c0b4576e-7bc8-4a1e-ad2b-72b84f51b65f" class="">These are techniques are used to optimise memory. </p><ul id="c8988f61-405e-4982-93ff-e5a379ee68b0" class="toggle"><li><details open=""><summary><strong>Paging</strong></summary><p id="012c7796-2d37-419c-a505-e0e90dc5ddf3" class="">Memory is divided into fixed sizes of 4kb, and each program may hold more than one page. When a program which used 15kb of memory these logical memory(the pages) locations may be physically stored in for separate locations. A <strong>Page Table </strong>is used to remember where each page is being held. </p><figure id="f2704ce7-042f-4915-abb3-9f573c215a8e" class="image"><a href="Systems%20Software%20212368bb8e0d484785b1a3f9be422854/ScannedDocument.png"><img style="width:528px" src="Systems%20Software%20212368bb8e0d484785b1a3f9be422854/ScannedDocument.png"/></a></figure></details></li></ul><ul id="bfda8bca-717c-4cef-b54f-db5d3f78c691" class="toggle"><li><details open=""><summary><strong>Segmentation</strong></summary><p id="c0b4fee7-456f-43c4-98b0-4a305ed903b6" class="">Is the logical division of address space into varying length segments which depend on the program structure.</p></details></li></ul><h2 id="a765889f-b1d8-4143-8a69-ba6bcfdc4be5" class="">Virtual Memory </h2><p id="ceb35d51-d14b-456b-baa3-a3f3eec8b6de" class="">Memory has a limit, so as more and more jobs are loaded into memory some of the data is moved off the RAM and onto the secondary storage device. The inactive data will be moved to the secondary device which starts acting like RAM.</p><h2 id="cc186399-b31b-467a-a5c6-5064c53a75ed" class="">Interrupts </h2><p id="ada52617-a132-4a26-8556-1f66a24387b6" class="">An <strong>Interrupt </strong>is a signal from a software program, hardware device or internal clock to the CPU. This happens when a software terminates or requests certain services from the operating system. </p><p id="fb4b1ecf-ed20-45bd-99a8-308a5a46369a" class="">They can also be triggered by a timer, that does certain mount of each task for a certain amount of time. Because of this OS&#x27;s can <strong>multitask. </strong></p><p id="83b42c4f-25bf-491d-ad4c-8da9de71df1a" class="">When the CPU receives an interrupt it suspends execution of the running program or process and disables all interrupts of a lower priority, while an <strong>Interrupt Service Routine </strong>is called to deal with it. </p><p id="9b06d9c9-bf56-4fd8-81e0-d2e459cc6dab" class="">A check for interrupts is done after the end of each clock cycle. </p><h2 id="6a83e8e5-fc13-4ba2-83b6-8f080e16e14c" class="">Processor Scheduling</h2><p id="3840b36f-dccf-42e6-a8b4-51ca11d86a05" class="">The <strong>scheduler </strong>is the module responsible for making sure the processor is being used as efficiently as possible. Their objectives are:</p><ul id="1accdd93-fe58-4cfb-98be-b9224dfb362f" class="bulleted-list"><li>Maximise throughput</li></ul><ul id="9b54e68c-f820-41b5-a9bb-0f8dbd484ca7" class="bulleted-list"><li>To be fair to all users on a multi-user system </li></ul><ul id="36bd8fef-1921-4269-8755-3a6c4a1bc161" class="bulleted-list"><li>Provide acceptable response times </li></ul><ul id="2a59a525-a739-4fba-8f71-5084ba2d6ae6" class="bulleted-list"><li>Ensure hardware is kept as busy as possible</li></ul><p id="952a1070-4969-4d69-8618-7345c9e57c41" class="">
+</p><p id="2df3bf2a-1d6f-4d84-83d3-eeafa3564aa5" class="">These are different scheduling algorithms:</p><div id="15015e81-25f8-46ab-a5db-7dbf1da4bf12" class="column-list"><div id="cf1426e4-d0ba-4a13-801e-0c9b53557247" style="width:50%" class="column"><p id="893f2792-f0d5-4de7-8ee0-1a320d5caa62" class="">Round Robin</p><p id="eab0a9bb-b865-4e59-940e-e339ff77a362" class="">
+</p></div><div id="21a5e2e6-32c7-4aeb-916f-b1e777fc32ea" style="width:50%" class="column"><p id="838b4e80-00a5-44ee-8aae-05622366cf83" class="">This is when the to-do list is sequenced as first-in first-out. Each process is given a limited amount of CPU time called a <strong>time slice</strong>. If it does not complete it in the time then the processor moves on. </p></div></div><div id="bb1a3da1-ddbb-40f3-b14a-4191ec3d9c36" class="column-list"><div id="05b5f9d8-6df4-432c-a883-9697dab50e9a" style="width:50%" class="column"><p id="22be2b66-c981-4b20-a545-f929b105580f" class="">First Come Fist Served </p></div><div id="1ab05441-63dc-4d8b-b2af-b4cc4b086957" style="width:50%" class="column"><p id="c484a62d-bab8-40be-ae98-5a70dfb76fd8" class="">Jobs are processed in the order in which they arrive, with no system of priorities</p></div></div><div id="0b34ee64-e64a-483a-a503-fd5179cc7c19" class="column-list"><div id="efdb88c2-35fe-4817-a511-6f55e0ca5ecc" style="width:50%" class="column"><p id="51c26acc-c0fe-453e-abad-9028b4ded8f0" class="">Shortest Remaining Time</p><p id="132344eb-74cc-41fb-8e4e-aeca1b578977" class="">
+</p></div><div id="5c317628-eaac-469a-a14f-5811cd64c8f2" style="width:50%" class="column"><p id="897d74f2-82e6-445d-91da-ad1d209e7526" class="">The process with the smallest estimated time to completion is run nest. This is used to reduce the number of waiting jobs. </p></div></div><div id="99374250-f529-489d-8e52-9c2c086fc80f" class="column-list"><div id="c4f00f42-cbde-4625-b7be-f4a9c31c963b" style="width:50%" class="column"><p id="3d2d6356-242e-404f-b1e0-42b4daaaccf2" class="">Multi-level feedback Queues</p><p id="26d0a60f-f031-43d1-aa4c-76302fac50ef" class="">
+</p></div><div id="2646a3b4-5a20-4b60-a3d3-03fc2c6ea459" style="width:50%" class="column"><p id="ca9e4b0f-80a8-4468-9f37-7c693d2e091b" class="">It gives preference to:</p><ul id="cdbe64a6-c266-41eb-905f-07f029c632b9" class="bulleted-list"><li>Short jobs</li></ul><ul id="eeb27dd5-eb22-40df-8328-9873d6db32a1" class="bulleted-list"><li>I/O bound processes </li></ul><ul id="ad613b67-dadb-4a96-86a1-5c7297c941e7" class="bulleted-list"><li>Separate processes into categories based on need</li></ul><p id="05e6f7aa-3095-48b1-bbae-6653bec91ec5" class="">This allows it to move between several queues to keep it the quickest</p></div></div><h2 id="86b73a4c-50a3-4c61-b19e-3049f80b5671" class="">Backing Store Management</h2><p id="86e21839-4925-4251-ade5-1eedba343a99" class="">When files and applications are loaded, they are transferred from backing storage into memory. The OS needs to keep a directory of where the files are stored so they can be accessed quickly. </p><h2 id="753e73c8-84fa-48f5-887f-550408e90c0c" class="">Peripheral Management </h2><p id="cf63de24-823b-4a9f-befc-773ce6e4fa5f" class="">This controls I/O devices. Data is transferred to a <strong>buffer </strong>to compensate for the different speeds that the peripheral and CPU operate at. </p><hr id="064ddc7c-f8fe-4999-bae3-3d1c6518813e"/><h1 id="aebd6dc2-4748-4935-8863-af65f12030ff" class="">Types of Operating Systems </h1><h2 id="644aaa42-c0a3-42bd-a46b-2e02820c3bdd" class="">Distributed Operating System</h2><p id="38b2cdd1-689b-4d50-a543-8d2f43fc234f" class="block-color-red">A <strong>distributed operating system </strong>is a form of parallel processing which spreads the load over many computer servers. </p><p id="bd346728-7294-46b5-a93d-dee78fcd743c" class="">A single job is split up into several tasks. It appears to the user to be a single system. The system is configured to share memory and tasks. Linux, Unix, and Windows are available in distributed versions.</p><h2 id="cd3d0c54-76c4-4c1e-b501-6ed05aa68e95" class="">Embedded Operating System</h2><p id="6d201a71-e32a-495b-a58e-dcbdbcfc7c48" class="block-color-red">Embedded systems are mainly used in electronic hardware. They generally so not have a permanent storage data. </p><p id="c865f642-df1f-47f9-a6ca-5a4e54b15369" class="">They have minimal user interface and often accept input from sensors. </p><h2 id="acba3ecf-0bc1-4c52-9352-4d6438cbba8d" class="">Multi-tasking Operating System</h2><p id="2656ded2-b048-41e1-93aa-edbeb03bea8c" class="block-color-red">This can run on a standalone computer. Most operating systems are able to run multiple jobs at once making them multi-tasking operating system. </p><p id="eb08fcc3-749a-48d2-85fe-164fbdf34a66" class="">The operating system keeps switching between jobs to make it look like all jobs are running at the same time. </p><h2 id="0dc2dbaa-bca8-4298-88a7-995eb61356f7" class="">Multi-user Operating System</h2><p id="6c17e259-a7c5-4025-804c-3b7b8712bac6" class="">Time-sharing operating systems are multi-user systems. A single powerful mainframe or supercomputer is connected to multiple terminals using the mainframes CPU. It dedicates time to each processor using a scheduling system. </p><h2 id="f9b9f3f8-b14e-4b2d-acd0-c3f0e6ff024f" class="">Real-Time Operating System</h2><p id="e8aab652-8528-4f2d-923d-0c59a157193a" class="">Real-time operating system must be able to </p><ul id="f10b401a-9578-4265-88dd-904d93f49508" class="bulleted-list"><li>respond quickly to inputs</li></ul><ul id="31375703-27d4-46e1-bcec-27d49c597cd5" class="bulleted-list"><li>deal with multiple inputs quickly </li></ul><ul id="5d685ca6-e9a6-4fb9-b126-8bc34268df45" class="bulleted-list"><li><strong>fail safe</strong> mechanism if hardware fails</li></ul><ul id="252c2446-65ce-4d2b-8e4d-a4d004d4bd76" class="bulleted-list"><li>incorporate redundancy if one component fails</li></ul><hr id="d64ac6f2-4b4d-420a-9849-dedc541709a3"/><h1 id="1213a97b-c607-49eb-89c2-740bc8650d2b" class="">BIOS (Basic Input Output System)</h1><p id="f3348481-1005-4f2b-af0a-057f3960d12e" class="">The BIOS is stored in the EPROM the memory that gets the computer started. The use of BIOS is to initialise and test the system hardware.</p><hr id="2e74f85c-cc62-4c02-8944-7e950b790314"/><h1 id="5c1722cc-c514-46fc-a272-527bd5e4644d" class="">Device Drivers </h1><p id="f2a4534f-5e31-4c39-984f-ed1f36bdfaae" class="">A device driver is a computer program that provides a software interface to a particular hardware. This enables the OS to access the hardware functions without needing to know the details of the hardware. </p><p id="fb590594-5917-4275-b06f-f5a65dcd35f7" class="">Drivers are hardware and OS specific. A driver typically communicates with the device using a network bus. </p><hr id="e0fd06dd-ca5b-441b-8d8a-7ded9ad32320"/><h1 id="b670b7b0-c718-4551-910d-dd146c2fe644" class="">Virtual Machines</h1><p id="a3388257-e198-4ccf-b2c3-d63ed0bc062f" class="">A virtual machine can be defined as any instance where software is used to take in the function of the machine. including executing intermediate code or running an operating system within another. </p></div></article></body></html>

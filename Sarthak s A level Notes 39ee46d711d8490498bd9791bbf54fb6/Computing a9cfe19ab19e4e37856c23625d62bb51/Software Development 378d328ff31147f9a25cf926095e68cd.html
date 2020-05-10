@@ -1,0 +1,625 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Software Development </title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="378d328f-f311-47f9-a25c-f926095e68cd" class="page sans"><header><h1 class="page-title">Software Development </h1></header><div class="page-body"><p id="c94d3488-966c-4fb0-92ec-702cffc25b75" class="">There are infinite variety of ways a problem an be solved using a computer. Stages of analysis, design, implementation, installation and evaluation are common to all projects. </p><hr id="d8d09fb5-c653-4b65-97a1-50ceb07b6fc7"/><h1 id="cf2366f3-b2ea-40df-aa2d-d9adb04d9bd3" class="">Analysis</h1><p id="0f062713-0c5c-4240-95f5-d774cca87b4b" class="">A problem must first be defined. This should cover: </p><ul id="c7c58139-3072-474d-b043-395a52c5009e" class="bulleted-list"><li> <strong>Data </strong>- its origin, uses, volumes and characteristics</li></ul><ul id="cb04446b-5641-41fe-a438-4e19df2e596a" class="bulleted-list"><li><strong>Procedures </strong>- what is done where, when, and how, and how errors are handled</li></ul><ul id="b58c5a8a-e44d-4e29-b5cd-c65e08f70b29" class="bulleted-list"><li><strong>Problems </strong>with any existing system</li></ul><hr id="283d53a3-dd43-4947-9ddb-511b91d3d659"/><h1 id="913e64b6-677f-4864-a923-13d006f1cd4a" class="">Design </h1><p id="2056b548-8614-4ecc-8e69-26997f1e37af" class="">Depending on the type of project they might have to consider the following: </p><ul id="591f6763-2fcf-4563-a10b-b87f2ee11986" class="bulleted-list"><li><strong>Processing - </strong>the algorithms and appropriate modular structure</li></ul><ul id="b82864b5-ee0f-4c1b-893c-9de965b9f131" class="bulleted-list"><li><strong>Data structures - </strong>how data will be held and accessed </li></ul><ul id="2879c572-adb4-42f3-ae6a-83b29b9e1a8a" class="bulleted-list"><li><strong>Output - </strong>content, format, sequence, frequency, medium</li></ul><ul id="a2fdef94-86e1-4647-b5c0-7c5217297686" class="bulleted-list"><li><strong>Input - </strong>volume, frequency, documents used, input metheords </li></ul><ul id="28b559ba-1ca9-47f6-a8ac-ad09a97fc24d" class="bulleted-list"><li><strong>User Interface - </strong>screens and dialogues, menus </li></ul><ul id="06dd0241-6dd9-44aa-a85c-030708724cce" class="bulleted-list"><li><strong>Security - </strong>how data is kept secure </li></ul><ul id="9a93101d-509c-442d-b6b6-966d98b3acad" class="bulleted-list"><li><strong>Hardware - </strong>selection of an appropriate configuration </li></ul><hr id="9aae4b41-8e9b-43f1-bbc3-23e9604a8e02"/><h1 id="3a81e45a-b430-44ad-a3c6-a3f1d77fc3e7" class="">Testing </h1><p id="14780c82-1fd9-4993-a9f0-daab19dd136e" class="">This generally involves breaking a problem into individual components until each of these modules preform a single well-defined task. These are several testing strategies: </p><p id="05c41a64-add1-4df4-8c87-17995c575115" class="">
+</p><p id="a5c896ab-483a-4391-9b5f-fd97e592dc8a" class="">
+</p><h2 id="efe36ec3-b250-4058-be28-26940df8bdb3" class="">Black Box Testing (function testing)</h2><p id="8f06c52a-2945-45fd-9638-a17703b9e375" class="">It is carries out independently from the code. It involves looking at the program specification and creating a set of test data that covers all the inputs and outputs and program functions. </p><h2 id="a53661ff-afa9-4971-8d29-6bf5d7e7ae9e" class="">White Box Testing (structural testing)</h2><p id="ea99fad7-5676-491a-9cca-aa984b3e77cd" class="">It is dependent of code logic, and derives from the program structure rather than its function. The program code is studied and tests are devised which test each possible path at least once. </p><h2 id="9f0dbb01-7b2b-4fbb-aa44-ed157f38895d" class="">Alpha Testing </h2><p id="dc87f8e9-bf67-4da0-8030-215055dbd89f" class="">It is carried out by the software developer&#x27;s in-house testing team. It is essential because it is often reveals both errors and omissions in the system requirements. This can solve problems in terms of overlooking and misunderstanding the specification. </p><h2 id="990f8a75-f717-44b6-a9b2-82ce60c426c7" class="">Beta Testing</h2><p id="fb23028d-8420-4a2b-be49-3a1c4f0d809e" class="">This involves giving the package to a number of potential users who agree to use the system and report any problem to the developers. This exposes the product to real use and detects problems and errors that may not have been anticipated. </p><hr id="7ea910ea-d856-49c5-9b5e-fdc11614fcd1"/><h1 id="d1f396d7-cf61-4254-a8a9-f95e8b0d95eb" class="">Implementation</h1><p id="e391e6a9-9311-4a1a-b7d4-174c5e165d28" class="">Coding and testing will be carried out. When it is all satisfactory the software will be installed on the user&#x27;s system and more testing will be done. </p><hr id="7460e0ec-1c98-49ce-a593-ecd39dec2839"/><h1 id="9daf367c-6d0f-44d5-a18b-3c0dd7f13a47" class="">Evaluation </h1><p id="5c3a3860-26bd-4d5f-8742-b6c3360a0d62" class="">This may include a post-implementation review, which is a critical examination of the system three to six months after it has been put into operation. This gives waiting time for training and adjustments, and the management a chance to evaluate the usefulness of the reports. So eventually all shortcomings will be apparent through all levels of the organisation. </p><p id="48d18532-e769-496e-8b2c-74e644bdeeca" class="">It will focus on:</p><ul id="6f60ca5d-1b43-414a-b35e-cb7233be0545" class="bulleted-list"><li>Comparison of actual and anticipated performance</li></ul><ul id="97676705-7f64-42a5-8f31-72d311f959db" class="bulleted-list"><li>Errors which have been made during development </li></ul><ul id="739a949c-afc9-459f-b4e0-27c0f818f4c7" class="bulleted-list"><li>Unexpected benefits and problems </li></ul><hr id="bb178028-72dc-44aa-8526-e3a2aa98b093"/><h1 id="e2db772a-0581-4edc-8a3f-fef8e5e8145f" class="">Types of Modelling and Methodology</h1><h2 id="d8241a8c-4494-43db-816b-809148852ab9" class="">Waterfall Lifecycle Model </h2><p id="91fa1e30-897b-4814-9cd0-d844c5bcd3c8" class="">This is when each step is completed one at a time from beginning to end. This was adopted from the manufacturing industry but had high implications if work was done wrong. </p><figure id="b9f86c5f-a479-4034-9882-2710bc385a0f" class="image"><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Waterfall_model.svg/1200px-Waterfall_model.svg.png"><img style="width:480px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Waterfall_model.svg/1200px-Waterfall_model.svg.png"/></a></figure><h2 id="1ce2d6be-8aad-466f-b717-03cdb69b81d6" class="">Spiral Model</h2><p id="e216580e-d287-4732-94ee-7ff59ce7e0d2" class="">This method still uses the same steps but introduces the idea of developing in iterative repeating steps. Generally used for large scale projects. Each time around the spiral the following are performed: </p><ul id="1780ae5c-c8a3-4f11-a5a0-61693e40f02a" class="bulleted-list"><li><strong>Analyse </strong>the requirements for the next prototype</li></ul><ul id="c9f87e4a-0c73-493b-a0d1-e880fcaa9dcb" class="bulleted-list"><li><strong>Design </strong>the next version</li></ul><ul id="4e96eb3d-f21c-41ec-a305-e5de91f610bb" class="bulleted-list"><li><strong>Implement </strong>the new prototype</li></ul><ul id="79065f64-1e2e-4254-95e3-a78ab178b979" class="bulleted-list"><li><strong>Evaluate </strong>the new prototype</li></ul><figure id="ae06a44b-e609-4eae-806a-b8498bd1bf79" class="image"><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Software_Development_Spiral.svg/2000px-Software_Development_Spiral.svg.png"><img style="width:432px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Software_Development_Spiral.svg/2000px-Software_Development_Spiral.svg.png"/></a></figure><h2 id="dda3b140-075c-4b4e-adee-a53fbf4a69d5" class="">Agile Modelling</h2><p id="1c33f412-612f-4776-91a5-5ea8a07c3fe3" class="">This is an iterative process which changes made are incremental as the next part of the system are built. At each stage, a prototype is built with user participation. The sucess of he development depends on: </p><ul id="cc499a2a-6a11-4107-b3d5-b8b5b565b37f" class="bulleted-list"><li><strong>Keeping the model simple </strong></li></ul><ul id="7c1c01c5-4292-4bf2-beed-591f35f5d6b9" class="bulleted-list"><li><strong>Rapid user feedback </strong></li></ul><ul id="e0e8dffc-e6f7-4647-9489-b5c05c38363c" class="bulleted-list"><li><strong>Understanding user requirements might change </strong></li></ul><ul id="bff80566-e152-4682-82d3-c72a56baa1e1" class="bulleted-list"><li><strong>Incremental changes</strong></li></ul><figure id="b545bb97-a7f2-46b6-b5a2-c78a8bea6e9c" class="image"><a href="https://t4tutorials.com/wp-content/uploads/2017/02/agile-model.png"><img style="width:480px" src="https://t4tutorials.com/wp-content/uploads/2017/02/agile-model.png"/></a></figure><h2 id="3b355972-5dfc-4635-8f8e-e8890048e32d" class="">Exterme Programming </h2><p id="c2ae6668-3a90-466a-95c1-e8ed131e05fd" class="">It is a methodology which is intended to improve software quality and responsiveness to changing customer requirements. It is a type of agile development where frequent updates are made. It improves productivity and introduces checkpoints at which new requirements can be added. </p><h2 id="fed0a3f0-af08-49b5-9903-f17de4023c64" class="">Rapid Application Development </h2><p id="a3b285ba-724e-4966-b630-5e3b31966f00" class="">Very large projects during which technology and user requirements might change. Major changes at late stages can lead to projects being cancelled or being restated. RAD methodology offers faster completion of major projects. The ideas behind this include: </p><ul id="1bc7cdf6-4f7a-4dca-920e-14c1c3ea208d" class="bulleted-list"><li>Workshops and focus groups </li></ul><ul id="5ef20813-d4ea-48ed-836e-0ce304d8fbfd" class="bulleted-list"><li>Use of prototyping to continually refine the system </li></ul><ul id="d4868fb5-efa4-4b16-9b81-712dd8bd345f" class="bulleted-list"><li>Producing within a strict time limit each part of the system, which may not be perfect but good enough. </li></ul><ul id="5e4d6578-16d8-43cd-b254-2df90f93d0c3" class="bulleted-list"><li>Reusing software components </li></ul><h2 id="0fdb319f-c8c0-4713-918e-1ccf6a431665" class="block-color-gray">Relative Merits and Drawbacks of each Methodology </h2><ul id="08c68bf2-de62-492f-9ad2-466a422e0658" class="block-color-gray bulleted-list"><li>The <strong>Waterfall Model </strong>is suitable for very small projects which need careful supervision. Absence of user feedback is a drawback </li></ul><ul id="e7d63e24-f971-4fa4-a852-1a1f5bc6cb36" class="block-color-gray bulleted-list"><li>The <strong>Spiral Model </strong>and <strong>Agile </strong>approach are acknowledge that requirements might change. It is easier to  to examine a working prototype and figure out what needs to be done. </li></ul><ul id="d3ae2f9d-bd6f-4c2c-9009-60390fe0914b" class="block-color-gray bulleted-list"><li><strong>Extreme Programming </strong>and <strong>Rapid Application Development </strong>are good for large projects where there is a chance of getting sidetracked by suggested improvements, so developers are continually chasing a moving target. <strong>  </strong></li></ul><hr id="4c4d7b0e-3f93-4c2d-a763-f3cc2239efe1"/><h1 id="f7f2d63b-d0b9-40a9-8d01-530376e26ba2" class="">Writing and Following Algorithms </h1><p id="a81e249a-6809-47e7-a193-dba9817ef98e" class="">A good algorithm has the following properties:</p><ul id="d34cd38a-5b5c-442f-9a2d-b67a548505f7" class="bulleted-list"><li>Clear and precise steps </li></ul><ul id="9425c73d-5b03-45da-b6ac-2acc26fdd13b" class="bulleted-list"><li>Allows for invalid inputs </li></ul><ul id="55feef52-fff0-4275-b988-22f9c685f8a0" class="bulleted-list"><li>Terminates at one point </li></ul><ul id="fe777340-f991-4b5e-8947-d91b29f73c32" class="bulleted-list"><li>Executes efficiently </li></ul><ul id="7b4488fb-c939-44cf-acff-02b4d3261221" class="bulleted-list"><li>Other people should be able to read and understand it</li></ul><h2 id="cd14ca5f-848a-4e41-8f02-4e31711dfc23" class="">Problems solved by Algorithms</h2><ul id="35f573b3-1fa9-417d-9831-daf968ca6154" class="bulleted-list"><li><strong>Internet-related </strong>used to manipulate huge amount of data on the internet. Search Engines </li></ul><ul id="258078c3-0756-42c4-87cb-126c536076e2" class="bulleted-list"><li><strong>Route-finding </strong>given two locations, this is used to determine the shortest route between the two points. </li></ul><ul id="745fa2e9-69cc-46d1-8570-d759863d8f1e" class="bulleted-list"><li><strong>Compression </strong>used to compress data files so they can be transmitted faster or be held in smaller space. </li></ul><ul id="d4f877ac-f3db-4eef-8ae7-720e004f5b3d" class="bulleted-list"><li><strong>Encryption </strong>used to hide data when being transmitted to avoid others from reading intercepted messages.</li></ul><p id="77bfd319-c3cd-4e01-9a63-1a84dd7303b2" class="">
+</p></div></article></body></html>

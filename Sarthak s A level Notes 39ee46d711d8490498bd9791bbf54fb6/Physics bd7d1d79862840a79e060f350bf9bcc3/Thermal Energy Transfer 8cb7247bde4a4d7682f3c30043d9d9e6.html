@@ -1,0 +1,624 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Thermal Energy Transfer</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="8cb7247b-de4a-4d76-82f3-c30043d9d9e6" class="page sans"><header><h1 class="page-title">Thermal Energy Transfer</h1></header><div class="page-body"><p id="085f7577-268d-477f-adad-96711b38e883" class="">Energy transfer happens between two objects take place if:</p><ul id="4f2bc350-6377-467b-9ad5-be2fa2bf1ada" class="bulleted-list"><li>One object exerts a force on the other object and makes it move. In other words one object does work on another </li></ul><ul id="82330b5c-d8fd-4308-b9c2-faf72eb019da" class="bulleted-list"><li>One object is hotter then another, so energy transfer by heating takes place by means of conduction, convection, or radiation. </li></ul><hr id="9a71360e-7bd1-45ff-bd1d-bd1b1319204d"/><h1 id="aeac6f1b-a6dc-465d-abb8-9918ba4171cb" class="">Internal Energy </h1><p id="ec85a3e9-17ee-4174-a712-5140b08d78e7" class="">Internal energy of an object is the energy of its molecules due to their individual movements and positions. The internal energy of an object due to its temperature is sometimes called <mark class="highlight-red">thermal energy</mark>. However some of the internal energy object could be due to other causes. For example, an iron bar that is magnetised has more internal energy than if it is unmagnetised, because of the magnetic interaction between the iron bar&#x27;s atoms. </p><p id="c9985ae4-1239-42d4-92ac-15ae0709098e" class="">The internal energy can be increased by:</p><ul id="da08c4d2-e899-4395-9d63-6b9565cd0a81" class="bulleted-list"><li>Energy transfer by heating the object</li></ul><ul id="dbd7b4f8-30c1-4f90-a460-7265d17e3126" class="bulleted-list"><li>Work done on the object, for example work done by electricity</li></ul><h2 id="24f90092-071a-46bb-ad6d-bfbb9fad99b4" class="">First Laws of Thermodynamics</h2><p id="0f0ebd29-ae50-4dd0-a3d3-e72706a68700" class="">It is when work done or by an object is transferred by heating. </p><p id="a3a1ee89-f7ed-4824-ae2b-f17e912e102c" class="block-color-red">The change of internal energy of the object = the total energy transfer due to work done and heating.</p><h2 id="7df77641-8a0a-4eb8-9b2f-3b7398fb000c" class="">Molecules Arrangement </h2><p id="be5f2b64-bee8-495b-a18a-1cdae16b3384" class="">In a solid, the atoms and molecules are held to each other by forces due to the electrical charges of protons and electrons. The molecules in a solid vibrate randomly about a fixed position. The higher the temperature, the more they vibrate. If it is heated enough it melts because they vibrate enough to that they break free from each other and lose their shape. </p><p id="18d6dcf8-4113-4fe5-88da-ebc9cf3feefb" class="">In a liquid, the molecule move about at random in contact with each other. The forces between the molecules are not strong enough to hold positions. The higher the temperature the more they vibrate. </p><p id="fc9e1908-fa02-49be-bbd6-52ad3a43c517" class="">In a gas or vapour,  the molecules also move about randomly but further apart on average then a liquid. Heating a gas making it gain kinetic energy so the molecules speed up. </p><p id="70bad869-4cfa-4f65-8493-3a4b42107b05" class=""><mark class="highlight-red">The internal energy of an object is the sum of the random distribution of the kinetic and potential energies of its molecules. </mark></p><h2 id="cfeb846e-7d75-4341-8266-819ed3652370" class="">Temperature Scales</h2><p id="bcae72e1-ef48-4a1b-b095-f0d7941e3583" class="">Temperature of an object is a measure of the degree of hotness of the object. Thermal equilibrium is reached when two object are the same temperature</p><figure id="49e4a6b9-fc1a-4c53-b623-1bd9454e3199" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mi>e</mi><mi>m</mi><mi>p</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>t</mi><mi>u</mi><mi>r</mi><mi>e</mi><mtext> </mtext><mi mathvariant="normal">˚</mi><mi>C</mi><mo>=</mo><mi>A</mi><mi>b</mi><mi>s</mi><mi>o</mi><mi>l</mi><mi>u</mi><mi>t</mi><mi>e</mi><mtext> </mtext><mi>T</mi><mi>e</mi><mi>m</mi><mi>p</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>t</mi><mi>u</mi><mi>r</mi><mi>e</mi><mtext> </mtext><mi>i</mi><mi>n</mi><mtext> </mtext><mi>K</mi><mi>e</mi><mi>l</mi><mi>v</mi><mi>i</mi><mi>n</mi><mo>−</mo><mn>273</mn></mrow><annotation encoding="application/x-tex">Temperature\ ˚C = Absolute\ Temperature\ in\ Kelvin- 273</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">e</span><span class="mord mathdefault">m</span><span class="mord mathdefault">p</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">u</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mspace"> </span><span class="mord">˚</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">b</span><span class="mord mathdefault">s</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">u</span><span class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span class="mspace"> </span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">e</span><span class="mord mathdefault">m</span><span class="mord mathdefault">p</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">u</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mspace"> </span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mspace"> </span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">7</span><span class="mord">3</span></span></span></span></span></div></figure><h3 id="987e810c-3f7c-4987-b63d-56a561942b73" class="">Absolute Zero</h3><p id="d91c8172-d651-4fa4-b40b-ff8bf3eaaaf5" class="">This is at 0 kelvin and is the lowest temperature possible. No object can have a temperature below absolute zero. An object at absolute zero has minimum internal energy, regardless of the substances the object consists of. </p><hr id="3437f461-34cb-497d-9833-d8f7c04b0c63"/><h1 id="fbf5267e-1629-4d3f-8d2c-9d27fb9fcbe7" class="">Specific Heat Capacity</h1><p id="bbc5401e-ff4b-48bb-adc9-cad9d1fa1e7b" class="block-color-red">The specific heat capacity of a substance us the energy needed to raise the temperature of a unit mass if the substance by 1 kelvin without change of state. </p><figure id="0f611f50-0eb5-44c2-818b-099801eaec8a" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mi>n</mi><mi>e</mi><mi>r</mi><mi>g</mi><mi>y</mi><mtext> </mtext><mi>N</mi><mi>e</mi><mi>e</mi><mi>d</mi><mi>e</mi><mi>d</mi><mtext> </mtext><mi mathvariant="normal">Δ</mi><mi>Q</mi><mo>=</mo><mi>M</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo>∗</mo><mi>S</mi><mi>p</mi><mi>e</mi><mi>c</mi><mi>i</mi><mi>f</mi><mi>i</mi><mi>c</mi><mtext> </mtext><mi>H</mi><mi>e</mi><mi>a</mi><mi>t</mi><mtext> </mtext><mi>C</mi><mi>a</mi><mi>p</mi><mi>a</mi><mi>c</mi><mi>i</mi><mi>t</mi><mi>y</mi><mo>∗</mo><mo>(</mo><msub><mi>T</mi><mn>1</mn></msub><mo>−</mo><msub><mi>T</mi><mn>2</mn></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">Energy\ Needed\ \Delta Q = Mass * Specific\ Heat\ Capacity *(T_1 - T_2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">n</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace"> </span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault">e</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mspace"> </span><span class="mord">Δ</span><span class="mord mathdefault">Q</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault">p</span><span class="mord mathdefault">e</span><span class="mord mathdefault">c</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">i</span><span class="mord mathdefault">c</span><span class="mspace"> </span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mord mathdefault">e</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mspace"> </span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">a</span><span class="mord mathdefault">p</span><span class="mord mathdefault">a</span><span class="mord mathdefault">c</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></div></figure><h2 id="a17c86b9-cb4d-4066-9ad8-2dd7602f320f" class="">Continuous Flow Heating </h2><p id="06caa5cc-1968-476a-bda6-943e8a12c04d" class="">In an electric shower, water passes steadily through copper coils heated by an electric heater. This is an example of continuous flow heating for mass m of liquid passing through the heater in time t at a steady flow rate. </p><figure id="e03a4403-dd22-4983-8b7a-c427d13d3c17" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>Q</mi><mo>=</mo><mi>E</mi><mo>=</mo><mi>I</mi><mi>V</mi><mi>t</mi><mo>=</mo><mi>m</mi><mi>c</mi><mi mathvariant="normal">Δ</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">\Delta Q = E=IVt= mc\Delta T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord">Δ</span><span class="mord mathdefault">Q</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">c</span><span class="mord">Δ</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span></span></div></figure><p id="f5ce2454-9a33-45ed-a6d9-7364d8741aed" class="">Similarly for solar panels, the energy gained per second by heating the liquid that flows through the panel is equal to mcT/t</p><hr id="4be3ebba-4b1b-477a-9e77-bd5655a84919"/><h1 id="3009cd3b-2081-4038-af3c-3f1a0c51e8d6" class="">Specific Latent Heat</h1><h2 id="85a1766d-0758-4ef1-a947-5e4e8923c70e" class="">Latent Heat</h2><p id="baaf7653-2895-44f6-9825-1c4ae238ada7" class="">When a solid or a liquid is heated so that its temperature increases its molecules gain kinetic energy. In a solid, the atoms vibrate more about their average positions. </p><ul id="ff2ce685-f461-4e24-8136-328f1c8c147b" class="bulleted-list"><li>Latent means hidden, latent heat supplied to melt a solid may be thought of as hidden because no temperature changes takes places even through the solid. </li></ul><ul id="9154d1ac-c562-48f7-8d8f-4526445e239d" class="bulleted-list"><li>Fusion means the melting of a solid because the solid fuses into a liquid as it melts </li></ul><h3 id="550f121f-0c0c-4652-a5dc-d787ca437110" class="">Specific Latent Heat of Fusion </h3><p id="ff40a660-90c1-4ace-a7ce-f64ba5726531" class="">It is the energy required for a substance to change the state of unit mass of the substance from solid to liquid, without change in temperature. </p><h3 id="8434549d-30b1-4b56-82f4-a1aeb6179fac" class="">Specific Latent Heat of Vaporisation</h3><p id="540daadb-488c-4037-9ca4-1453de5bada9" class="">It is the energy required for a substance to change the state of a unit mass of the substance from liquid to vapour, without change in temperature. </p><p id="08ed9d54-9c9f-4639-bab7-14c698cecfe6" class="">
+</p><p id="79b74364-46b8-4dcd-9872-bb8e8d3a5953" class="">So the energy needed to change the state of mass m of a substance from sloid to liquid with out the change in temperature is given by:</p><figure id="ff90ee27-c289-47f1-8ad9-c6ca34702548" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Q</mi><mo>=</mo><mi>m</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">Q = m l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">Q</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span></span></div></figure><hr id="7871c285-4097-41fa-a65b-444b162231d7"/><h2 id="195742ae-1471-4440-aaab-379632c111bf" class="">Temperature-Time Graphs</h2><figure id="f13dd3b2-5419-4cd8-804f-7dad4398f447"><div class="source"><a href="data:image/png;base64,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">data:image/png;base64,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</a></div></figure><figure id="c6c46f23-48c4-4078-b58f-44611ecee91a"><div class="source"><a href="Thermal%20Energy%20Transfer%208cb7247bde4a4d7682f3c30043d9d9e6/Unknown-11.txt">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/464c36f8-1f7e-4b29-957a-f97c4c4d8d62/Unknown-11.txt</a></div></figure><p id="4e3fa76c-0357-4984-b2d4-c2f3161044a6" class="">If a solid has a larger specific heat capacity than the liquid, the rate of temperature rise of the solid is less than that of the liquid. The liquid heats up faster then the solid. </p><p id="6e35c3ca-0b07-479f-a140-2b7d14257fd6" class="">
+</p></div></article></body></html>
